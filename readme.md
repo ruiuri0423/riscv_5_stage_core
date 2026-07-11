@@ -1,5 +1,5 @@
 # RISC-V
-![5-Stage RISC-V Architecture](./DOC/arch.png)
+![5-Stage RISC-V Architecture](./DOC/image.png)
 ---
 ### ISA Support (vs. `DOC/riscv-unprivileged.pdf`)
 Implemented:
