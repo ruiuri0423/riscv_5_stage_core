@@ -1,0 +1,34 @@
+# ---- Simulation / EDA generated artifacts ----
+# VCS
+simv
+simv.daidir/
+csrc/
+*.vpd
+ucli.key
+vc_hdrs.h
+DVEfiles/
+*.vdb
+AN.DB/
+
+# Verdi / Novas
+verdiLog/
+novas.conf
+novas.rc
+novas_dump.log
+*.fsdb
+nWaveLog/
+verdi_config_file
+vfastLog/
+
+# Waveforms / dumps
+*.vcd
+*.shm/
+*.wlf
+
+# Logs
+*.log
+
+# Editor / OS
+*.swp
+*~
+.DS_Store
