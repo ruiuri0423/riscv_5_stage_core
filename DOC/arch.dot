@@ -1,0 +1,91 @@
+digraph rv32i_core {
+  rankdir=LR;
+  bgcolor="white";
+  labelloc="t";
+  fontname="Helvetica-Bold";
+  fontsize=22;
+  label="RV32I 5-Stage Pipeline Core  (RTL/Core/CoreTop.v)";
+  nodesep=0.35;
+  ranksep=0.9;
+
+  node [fontname="Helvetica", fontsize=12, style="filled", penwidth=1.4];
+  edge [fontname="Helvetica", fontsize=9, color="#555555", arrowsize=0.8];
+
+  /* ---------- Stage 1 : Instruction Fetch ---------- */
+  subgraph cluster_IF {
+    label="IF  (RTL/PC_IF)";
+    fontname="Helvetica-Bold"; fontsize=14; style="rounded,filled"; color="#E8F0FE"; fontcolor="#1A3C7A";
+    PCGEN  [label="PcGen\n(next PC)", fillcolor="#C6D9F7"];
+    BRPRED [label="BranchPredict", fillcolor="#C6D9F7"];
+    IFETCH [label="InstFetch\n(PC / inst reg)", fillcolor="#AEC8F0", shape=box];
+  }
+  IMEM [label="Inst Memory\nMemoryModel", shape=cylinder, fillcolor="#D9D9D9"];
+
+  /* ---------- Stage 2 : Decode + Register Read ---------- */
+  subgraph cluster_ID {
+    label="ID  (RTL/Decoder, RTL/OperandRegister)";
+    fontname="Helvetica-Bold"; fontsize=14; style="rounded,filled"; color="#E6F4EA"; fontcolor="#1E5631";
+    DECTOP [label="DecoderTop\nTypeDecoder + FunctionDecoder", fillcolor="#BFE3C9", shape=box];
+    REGF   [label="Register File\nRegisterTop / Register32\n(32 x 32b, x0=0)", fillcolor="#A9D8B6", shape=box];
+  }
+
+  /* ---------- Stage 3 : Execute ---------- */
+  subgraph cluster_EX {
+    label="EX  (RTL/ALU)";
+    fontname="Helvetica-Bold"; fontsize=14; style="rounded,filled"; color="#FEF7E0"; fontcolor="#7A5C00";
+    ALU [label="ALUTop / ALU\nadd sub logic shift\ncompare / branch resolve", fillcolor="#F5E39A", shape=box];
+  }
+
+  /* ---------- Stage 4 : Memory Access ---------- */
+  subgraph cluster_MEM {
+    label="MEM  (RTL/ALU/LSU.v)";
+    fontname="Helvetica-Bold"; fontsize=14; style="rounded,filled"; color="#FCE8E6"; fontcolor="#7A1F1A";
+    LSU [label="LSU\nload/store size +\nsign extend", fillcolor="#F3B7B1", shape=box];
+  }
+  DMEM [label="Data Memory\nMemoryModel", shape=cylinder, fillcolor="#D9D9D9"];
+
+  /* ---------- Stage 5 : Write Back ---------- */
+  subgraph cluster_WB {
+    label="WB  (RTL/WriteBack)";
+    fontname="Helvetica-Bold"; fontsize=14; style="rounded,filled"; color="#F3E8FD"; fontcolor="#4A148C";
+    WB [label="WriteBack\nALU vs Mem result", fillcolor="#DDBDF5", shape=box];
+  }
+
+  /* ---------- Cross-cutting units ---------- */
+  FWD  [label="ForwardUnit\nhazard detect / forward\nnop_insert (load-use bubble)", fillcolor="#FFE0B2", shape=box, penwidth=2];
+  CSR  [label="CSRTop / CSR\nZicsr\n(mscratch, m*id ...)", fillcolor="#B2EBF2", shape=box];
+  BUS  [label="CoreBus\naddress decode\nINST 0xFFFF_0000 / DATA 0xFFFF_1000", fillcolor="#CFD8DC", shape=box];
+
+  /* ---------- Datapath (main pipeline) ---------- */
+  PCGEN  -> IFETCH;
+  BRPRED -> IFETCH;
+  IFETCH -> IMEM   [label="req"];
+  IMEM   -> IFETCH [label="inst", style=dashed];
+  IFETCH -> DECTOP [label="inst / pc", penwidth=2, color="#1A3C7A"];
+  DECTOP -> REGF   [label="rs1/rs2/rd"];
+  DECTOP -> ALU    [label="ctrl / imm", penwidth=2, color="#1E5631"];
+  REGF   -> ALU    [label="rs1_data / rs2_data", penwidth=2, color="#1E5631"];
+  ALU    -> LSU    [label="alu_out", penwidth=2, color="#7A5C00"];
+  LSU    -> DMEM   [label="req"];
+  DMEM   -> LSU    [label="rdata", style=dashed];
+  LSU    -> WB     [label="result", penwidth=2, color="#7A1F1A"];
+  WB     -> REGF   [label="rd_data (write back)", style=dashed, constraint=false, color="#4A148C"];
+
+  /* ---------- Control / feedback ---------- */
+  ALU    -> IFETCH [label="flush / branch target", style=dashed, constraint=false, color="#B00020"];
+  ALU    -> CSR    [label="csr write", constraint=false];
+  CSR    -> FWD    [label="csr_out", style=dotted, constraint=false];
+  DECTOP -> CSR    [label="csr addr/imm", constraint=false];
+
+  ALU    -> FWD    [style=dotted, constraint=false];
+  WB     -> FWD    [style=dotted, constraint=false];
+  FWD    -> REGF   [label="forward data", style=dotted, constraint=false, color="#E65100"];
+  FWD    -> DECTOP [label="nop_insert", style=dotted, constraint=false, color="#E65100"];
+
+  /* ---------- Memory bus routing ---------- */
+  IFETCH -> BUS [style=invis];
+  BUS -> IMEM [style=dotted, constraint=false, label="route"];
+  BUS -> DMEM [style=dotted, constraint=false, label="route"];
+
+  { rank=same; FWD; CSR; }
+}

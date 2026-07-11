@@ -32,3 +32,6 @@ vfastLog/
 *.swp
 *~
 .DS_Store
+
+# Claude Code local guidance (not tracked)
+CLAUDE.md
