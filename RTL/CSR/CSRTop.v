@@ -46,7 +46,7 @@ always @(posedge CLK or negedge RSTN)
     else if (~csr_freeze)
       begin
         alu_csr_vld  <=  is_CSR | is_CSRI;
-        alu_csr_out  <= (is_CSR & is_CSRI) ? dec_csr_out : alu_csr_out;
+        alu_csr_out  <= (is_CSR | is_CSRI) ? dec_csr_out : alu_csr_out;
       end
   end
 
@@ -68,12 +68,12 @@ always @(posedge CLK or negedge RSTN)
       begin
         alu_csr_wen  <= alu_csr_wen ? 1'b0 : (~csr_freeze & dec_csr_wen) ? 1'b1 : 1'b0;
         alu_csr_addr <= dec_csr_addr;
-        alu_csr_wb   <= (is_CSR  & is_CSR_ADD) ? dec_csr_out + rs1_data :
-                        (is_CSR  & is_CSR_SET) ? dec_csr_out | rs1_data :
-                        (is_CSR  & is_CSR_CLR) ? dec_csr_out & rs1_data :
-                        (is_CSRI & is_CSR_ADD) ? dec_csr_out + imm_data :
-                        (is_CSRI & is_CSR_SET) ? dec_csr_out | imm_data :
-                        (is_CSRI & is_CSR_CLR) ? dec_csr_out & imm_data : 'd0;
+        alu_csr_wb   <= (is_CSR  & is_CSR_ADD) ?                rs1_data :
+                        (is_CSR  & is_CSR_SET) ? dec_csr_out |  rs1_data :
+                        (is_CSR  & is_CSR_CLR) ? dec_csr_out & ~rs1_data :
+                        (is_CSRI & is_CSR_ADD) ?                imm_data :
+                        (is_CSRI & is_CSR_SET) ? dec_csr_out |  imm_data :
+                        (is_CSRI & is_CSR_CLR) ? dec_csr_out & ~imm_data : 'd0;
       end
   end
 
