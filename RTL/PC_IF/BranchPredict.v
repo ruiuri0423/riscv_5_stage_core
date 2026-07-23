@@ -181,7 +181,7 @@ always @(posedge CLK or negedge RSTN)
             for (i=1; i<RAS_DEPTH; i=i+1)
               ras_stack_spec[i] <= ras_stack_spec[i-1];   
           end
-        else if (~pc_call & pc_return) // pop then push
+        else if ( pc_call & pc_return) // pop then push
           begin
             ras_stack_spec[RAS_DEPTH-1][31:0] <= (pc + 3'd4);
             ras_stack_spec[RAS_DEPTH-1][32  ] <= 1'b1;  
@@ -207,8 +207,8 @@ assign bp_taken   = pc_taken;
 assign bp_pc      = (pc_return & ras_stack_spec[RAS_DEPTH-1][32]) ? 
                      ras_stack_spec[RAS_DEPTH-1][31:0] : btb_target[pc[0+:BTB_WIDTH]];
 
-assign pc_call    = btb_call   [pc[0+:BTB_WIDTH]];
-assign pc_return  = btb_return [pc[0+:BTB_WIDTH]];
+assign pc_call    = btb_call   [pc[0+:BTB_WIDTH]] & tag_valid & pc_vld & ~pc_freeze;
+assign pc_return  = btb_return [pc[0+:BTB_WIDTH]] & tag_valid & pc_vld & ~pc_freeze;
 
 always @(posedge CLK or negedge RSTN)
   begin : BTB_VALID
