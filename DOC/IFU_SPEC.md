@@ -81,9 +81,19 @@ IFU **不**包含:
 
 協議約束:
 
-- **Outstanding = 1**:AR 發出後,對應 R beat 被接受前不再發 AR。
+- **Outstanding = 1**:上一筆的 R beat 被接受前不發新 AR;
+  但「接受 R」與「發下一筆 AR」**允許同拍重疊**,否則頻寬減半
+  (1-cycle memory 下無法每拍取指)。
 - **Issue 事件** ≜ `ARVALID & ARREADY`;`pc_q` 僅在此事件更新。
-- `ARVALID = ~ar_pending & ~skid_full`(skid 滿時不預借請求,R 通道由 RREADY 反壓)。
+- 請求發出條件:
+
+  ```
+  r_accept = RVALID & RREADY                       // 本拍 R beat 完成握手
+  ARVALID  = (~ar_pending | r_accept) & ~skid_full
+  ```
+
+  (`RVALID → ARVALID` 為一條組合路徑;`RVALID` 為 slave 暫存器輸出、
+  `ARADDR` 全暫存,無迴圈。)
 - 單 beat(無 burst / 無 ID);未來上 I-Cache 需 burst 時升級為完整 AXI4,channel 結構不變。
 
 ### 3.2 Inst. interface(IF → ID)
@@ -156,7 +166,7 @@ AR issue 時:pc_q <= next_pc + 4       // reset 值 = boot_addr
 
 | 狀態 | 寬度 | 行為 |
 |---|---|---|
-| `ar_pending` | 1 | AR issue 置起;R beat 被接受(`RVALID & RREADY`)清除 |
+| `ar_pending` | 1 | AR 握手置 1;對應 R beat 握手清 0;兩事件同拍發生時維持 1(等效 credit=1 記帳) |
 | `discard`    | 1 | redirect 被接受時若 `ar_pending`(或同拍有 R beat 未消費)置起;下一個 R beat 丟棄(不進 skid、不出 if2id)後清除 |
 
 錯誤路徑指令因此**不會進入 ID**;flush 訊號只需清除「已在 ID/EX 中」的指令。
@@ -253,6 +263,12 @@ IFU 僅將非 OKAY 記為 payload 的 `fault` bit 傳遞;
 4. **RRESP 為 slave 回報而非 master 指定**:見 §5.6。
 5. **Outstanding = 1**:與 EX 單一佔用哲學一致;discard 記帳退化為 1 bit;
    1-cycle memory 下 IPC 與現行等價。多 outstanding 留待 I-Cache/prefetch 需求出現。
+6. **RespBuffer 採 skid buffer 而非 `RREADY` 直通 `if2id_ready`**:
+   直通功能上可行(AXI 保證 slave hold 未被接受的 beat,資料不掉),
+   skid 的價值在 (a) 反壓打拍,切斷 `if2id_ready → RREADY` 的跨模組組合 ready 鏈
+   (valid/ready 架構的主要時序風險點);(b) beat 不滯留於匯流排,
+   共享 interconnect 時不佔用其他 master 的通道;(c) 空時 passthrough,零延遲成本;
+   (d) 同一 `SkidBuffer` 元件可複用於 ID→EX、EX→WB 邊界,反壓風格統一。
 
 ---
 
