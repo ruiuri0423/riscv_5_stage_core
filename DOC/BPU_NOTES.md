@@ -45,6 +45,8 @@
 - `pred_taken` 非裁決必需(可由 `pred_npc != pc+4` 反推),帶 1 bit 的理由:
   訓練策略要區分「BTB miss 未預測」vs「有預測」(初見 taken 分支 → allocate BTB entry)、
   mispredict rate 統計、debug 可視性。
+- metadata 候選欄位 `pred_hit`(1 bit,= 查表當拍的 `tag_valid`):
+  history 事件對齊為「有預測才 shift」時,arch 端 shift 條件的依據(見 §6)。
 - 替代方案「BPU 內部 in-flight queue 配對」被否決:queue 須鏡射管線全部流動控制
   (stall/bubble/flush),重複記帳易失步;payload 方案由既有管線暫存器免費對齊。
 
@@ -85,7 +87,17 @@
   arch 版對**所有**解析分支無條件 shift(`alu_branch`,含 BTB miss 初見分支與 jal/jalr)。
 - 後果:BTB miss 分支使 spec/arch 悄悄失步,至下次 flush 才重新同步;
   §4 方式 A 的等式也依賴事件定義一致。
-- 新設計:兩邊採同一事件定義(例:皆只記條件分支,或皆記全部分支類 —— spec 時拍板)。
+- 新設計:兩邊採同一事件定義。**對齊方向只有一邊可行**:
+  - 「有預測(BTB hit)才算事件」——可行:spec 端維持現狀;arch 端於解析時需知道
+    「該分支 fetch 當拍是否 BTB hit」,由 metadata 多帶 1 bit(`pred_hit` = 查表當拍的
+    `tag_valid`)提供。BTB miss 初見分支不進 history,解析後 allocate,之後即為 hit,
+    事件集合暖機後收斂。
+  - 「所有分支都算事件」——不可行:fetch 當拍無法辨識 BTB miss 的分支
+    (未解碼,唯一辨識手段即 BTB hit;此即現行 spec 僅 hit 才 shift 的原因);
+    解析時將漏失 bit 插回 spec history 中段會破壞順序。
+- 方式 A(arch 重建)的成立前提:解析順序==預測順序、一次解析一條、
+  誤預測沖掉所有較年輕分支 —— 單發射 in-order 天然滿足;
+  亂序解析 / 選擇性 flush 出現時等式破裂(此為 §4 ghist 傾向保留的核心理由)。
 
 ## 7. Call / Return 分類(RAS hint)
 
