@@ -260,6 +260,11 @@ IFU 僅將非 OKAY 記為 payload 的 `fault` bit 傳遞;
 
 - [ ] ID 介面定義(`if2id_ready` 聚合條件、ID→EX payload)——下一階段
 - [ ] BPU 規格(query 管線、resolve、訓練、Bht/Btb/Ras 儲存層介面)
+  - history 事件的定義必須 spec / arch 一致:現行實作 spec 版僅於 BTB hit 時 shift
+    (有紀錄才 shift),arch 版對所有解析分支無條件 shift,BTB miss 的分支會使兩者
+    悄悄失步,直到下次 flush 才重新同步 —— 新設計兩邊採同一事件定義
+  - 投機狀態恢復規則(ghist / RAS 通用):`spec := architectural ⊕ 觸發恢復指令自身的效果`;
+    觸發源含 mispredict flush 與未來 trap flush
 - [ ] BTB index/tag 位元配置(index 自 `pc[2]` 起;tag 覆蓋至系統映射的有效位元)
 - [ ] `AxiMemSlave`:MemoryModel 的 AXI wrapper(sim 用;含 RVALID hold 行為)
 - [ ] Trap 單元接入:`RedirectArb`(TRAP > MISPREDICT)、BPU `ext_flush`、`fault` 消費
