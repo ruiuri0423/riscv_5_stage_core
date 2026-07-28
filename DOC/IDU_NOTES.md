@@ -141,7 +141,23 @@ ex_fwd = { vld,        // WB 級指令有效且 rd_wen(store/branch 不拉)
    幽靈執行前一條的存取型態。
 
 影響評估:合法程式碼不會踩到;但這是 trap/illegal-instruction exception 的前置債,
-新 decoder 應至少補 `illegal` 旗標(交由未來 trap 單元),`is_LS` 補 default。
+新 decoder 應至少補 `illegal` 旗標(交由未來 trap 單元),`is_LS` 補 default
+(精確位置:**內層** case 的 if/else-if 鏈缺 else,外層 default 只涵蓋非 LOAD/STORE)。
+
+**`illegal` 旗標檢查清單**(`illegal = NOT(合法 RV32I ∪ Zicsr 編碼)`):
+
+| 檢查項 | 內容 |
+|---|---|
+| 編碼長度 | `inst[1:0] != 2'b11`(未實作 C 擴充) |
+| 全 0 / 全 1 | spec 明文定義為 illegal |
+| 未知 major opcode | 不屬已解碼的 11 個 opcode |
+| funct3 缺口 | BRANCH 010/011;LOAD 011/110/111;STORE ≥011;JALR ≠000;SYSTEM 100 |
+| funct7 全檢 | OP 僅 `0000000` / `0100000`(後者限 ADD→SUB、SRL→SRA);OP-IMM 移位同理;其餘含 M 擴充 `0000001` 一律 illegal |
+| SYSTEM funct3=000 | ECALL(imm=0)/EBREAK(imm=1)實作前標 illegal;其餘 imm 值 illegal |
+
+行為:decoder 只標旗標不處置;`illegal=1` 強制 rd_wen/mem/branch 屬性無效(等效 NOP),
+trap 單元完成後據此發 illegal-instruction exception(mcause=2、mtval=inst)。
+CSR 位址不存在之檢查屬 CSR 單元職責,另計。
 
 ### 5.3 死碼/懸空(清理項)
 
@@ -156,6 +172,18 @@ ex_fwd = { vld,        // WB 級指令有效且 rd_wen(store/branch 不拉)
   (`~nop_insert & ~alu_flush & ~csr_hazard & ~dec_freeze`)雙重職責 ——
   §3 的 combo-loop 陷阱源自於此;新 decoder 應把「指令屬性」(純組合、無 gating)
   與「管線控制」(valid/ready)分離。
+- **分離準則的落實方式**(已確認):控制對象從「資料內容」換成「valid bit」——
+
+  ```
+  屬性(純組合):attr = f(inst)                    // 永不 gate、永不清零
+  控制(握手):  out_vld — 載入:in_vld & out_ready & ~flush
+                          清除:flush / 被取走且無新資料
+                          保持:~out_ready(stall)
+  資料暫存器:   僅載入時更新,其餘保持;valid=0 時內容為 don't-care
+  ```
+
+  Bubble = `out_vld=0`(不再清零欄位製造 NOP);stall = 暫存器 hold;
+  flush = 只殺 valid。現行「清成全 0 = NOP」的做法與其優先權糾纏全數淘汰。
 
 ## 6. 待拍板清單
 
