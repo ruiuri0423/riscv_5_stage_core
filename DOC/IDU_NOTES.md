@@ -228,12 +228,12 @@ CSR 位址不存在之檢查屬 CSR 單元職責,另計。
 
 ## 6. 待拍板清單
 
-- [ ] 偽 stall 是否於現行 code 修正(§3),或隨新架構淘汰
-- [ ] 新 ID 的 `id_ready` 聚合條件(目前推導:`ex_ready` 一項 + flush 清 valid)
-- [ ] ID→EX payload 欄位定義(含已定案的 operand 解析規則 §4.3)
-- [ ] `illegal` 旗標與非法編碼行為定義(§5.2;與 trap 規劃連動)
-- [ ] 新 decoder 的「指令屬性 / 管線控制」分離(§5.4)
-- [ ] Operand 存放方案:A1(fire 當拍組合解析)vs A2(預存 + 兩次 patch)(§4.4)
+- [x] 偽 stall:不於現行 code 修正,隨新架構淘汰(§3)
+- [x] `id_ready`:規格僅定義介面(`IDU_SPEC.md` §4.1)
+- [x] ID→EX payload:rs1/2_data、rd、pc、valid、BPU metadata 等(`IDU_SPEC.md` §4.2)
+- [x] `illegal` + trap:補足 SYSTEM(ECALL/EBREAK/MRET)與 trap CSR(`IDU_SPEC.md` §2)
+- [x] 屬性/控制分離:介面解決管線控制,輸出全擋 register(`IDU_SPEC.md` §1.2)
+- [x] Operand 存放:採 **A2**(預存 + latch/fire 兩次 patch)(§4.4;`IDU_SPEC.md` §5.1)
 - [x] ID→EX 緩衝:skid 邊界原則 —— 對外介面設、in-hart 不設;
       ID→EX 為 in-hart,單一管線暫存器 + 組合 ready(§4.5)
 - [x] Scoreboard / ROB:現階段不做,列為 non-blocking load 演進路徑(§4.6)
