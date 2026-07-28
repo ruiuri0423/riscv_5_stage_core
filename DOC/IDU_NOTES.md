@@ -115,6 +115,41 @@ ex_fwd = { vld,        // WB 級指令有效且 rd_wen(store/branch 不拉)
 - 若 ID 預存 RF 讀值,mux 必須蓋在預存暫存器 Q 端之後(等待期間預存值會過期);
   FF regfile 組合讀 + fire 當拍解析則無此問題。
 
+### 4.4 Operand 存放的兩個候選方案(待拍板)
+
+| 方案 | 做法 | 取捨 |
+|---|---|---|
+| A1 fire 當拍組合解析 | ID 不預存 operand 值;fire 當拍組合 `RF讀 + ex_fwd patch` | 無過期問題;fire 拍路徑較長(RF mux + 比較 + mux) |
+| A2 預存 + 兩次 patch | 進 ID 時讀 RF 預存(**latch 當拍以 ex_fwd patch** 擋 read-during-write);fire 當拍再 patch 一次蓋過期值 | fire 拍路徑短;同一組比較器、兩個 mux(預存暫存器 D 端與 Q 端) |
+
+A2 正確性論證 —— 兩次即足夠、不需等待期間連續刷新,對應 producer 三個年齡層:
+
+| Producer 狀態(以 latch 拍為基準) | 由誰供值 |
+|---|---|
+| 更早已退休(RF 已寫完) | RF 組合讀 |
+| 正在 WB(與 latch 同拍) | **latch 時 patch**(read-during-write:RF 寫在拍尾、讀在拍中,同拍寫不可見) |
+| 還在 EX(等待期間才完成) | **fire 時 patch**(單一佔用保證它完成時恰在邊界暫存器,fire 當拍必命中) |
+
+通用規格語言:**無論預存與否,operand 最終值以 fire 當拍的 `ex_fwd` 比對為準**。
+
+### 4.5 已決策:全核不設 skid buffer
+
+核內介面種類多、payload 寬,每個 stage 邊界原生僅一組管線暫存器(consumer 端),
+ready 鏈天然短(`wb_ready` 恆 1、`ex_ready` 為暫存器輸出);
+AXI 邊界的資料保持由協議免費提供。Skid 自預設元件降級為定點工具
+(特定邊界 ready 鏈成 critical path 或 interconnect 共享時局部加入)。
+IFU 端的落實見 `IFU_SPEC.md` v1.1 §5.3。
+
+### 4.6 演進路徑備查:non-blocking load 與 scoreboard
+
+現行計畫(EX 單一佔用)下,「記錄 ID 已 issue 的 rd」的 buffer(scoreboard)
+為零收益 —— in-flight producer ≤ 2,資訊已存在於管線暫存器,且不相依指令同樣
+進不了 busy 的 EX。真正的入場時機為放寬單一佔用(non-blocking load:
+load 等待期間放行不相依 ALU 指令),屆時完整帳單:
+busy 追蹤、WAW 擋捕、forward 多源化(單源優雅性消失)、WB 口仲裁、flush 記帳。
+ROB 為更後一級(亂序完成後依序退休、精確例外),本核視野外。
+待四級架構量測 IPC 確認 load 阻塞為主要損失後再議。
+
 ## 5. 現行 Decoder 完整度盤點(2026-07 掃描)
 
 ### 5.1 指令解碼覆蓋(合法編碼)
@@ -195,4 +230,6 @@ CSR 位址不存在之檢查屬 CSR 單元職責,另計。
 - [ ] ID→EX payload 欄位定義(含已定案的 operand 解析規則 §4.3)
 - [ ] `illegal` 旗標與非法編碼行為定義(§5.2;與 trap 規劃連動)
 - [ ] 新 decoder 的「指令屬性 / 管線控制」分離(§5.4)
-- [ ] RegFile 讀取方式:FF 組合讀(fire 當拍解析)vs ID 預存(§4.3)
+- [ ] Operand 存放方案:A1(fire 當拍組合解析)vs A2(預存 + 兩次 patch)(§4.4)
+- [x] ID→EX 緩衝:全核不設 skid buffer,單一管線暫存器 + 組合 ready(§4.5)
+- [x] Scoreboard / ROB:現階段不做,列為 non-blocking load 演進路徑(§4.6)
