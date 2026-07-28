@@ -2,7 +2,7 @@
 
 | 項目 | 內容 |
 |---|---|
-| 版本 | v1.1(v1.0 → v1.1:移除 skid buffer,RespBuffer 簡化;見 §5.3) |
+| 版本 | v1.2(邊界原則定案:**對外介面設 skid、in-hart 不設**;IFU 對外 AXI 端口恢復 skid,見 §5.3) |
 | 狀態 | 介面凍結,待實作 |
 | 適用架構 | 四級管線 IF / ID / EX / WB;EX 單一佔用、變動延遲 |
 | 相關文件 | `DOC/BPU_NOTES.md`(BPU 討論記錄;正式 BPU spec 另立) |
@@ -93,7 +93,7 @@ IFU 負責且僅負責下列三件事:
 | `ARADDR`  | out | 32 | 取指位址(word aligned) |
 | `ARPROT`  | out | 3 | 常數 `3'b100`(instruction access) |
 | `RVALID`  | in  | 1 | 回應 valid |
-| `RREADY`  | out | 1 | `= if2id_ready \| discard`(§5.3;組合,AXI 允許 RREADY 依賴 RVALID) |
+| `RREADY`  | out | 1 | `= ~skid_full`(純暫存器輸出;§5.3) |
 | `RDATA`   | in  | 32 | 指令 |
 | `RRESP`   | in  | 2 | slave 回報之存取結果;非 `OKAY` 記為 fetch fault(§5.6) |
 
@@ -108,13 +108,12 @@ IFU 負責且僅負責下列三件事:
   - 做法:
 
     ```
-    r_accept = RVALID & RREADY                // 本拍 R beat 完成握手
-    ARVALID  = ~ar_pending | r_accept
+    r_accept = RVALID & RREADY                       // 本拍 R beat 完成握手
+    ARVALID  = (~ar_pending | r_accept) & ~skid_full
     ```
 
     `ar_pending` 採 credit=1 記帳:AR 握手置 1、對應 R beat 握手清 0、
-    兩事件同拍發生時維持 1。下游反壓經由「R beat 未被接受 → `r_accept` 不成立
-    → 不發新 AR」自然傳遞,無需額外條件。
+    兩事件同拍發生時維持 1;skid 滿時不預借新請求。
   - 結果:穩態下每拍皆可取指(頻寬不損);in-flight 恆 ≤ 1,
     discard 記帳退化為 1 bit。註:`RVALID → ARVALID` 為一條組合路徑,
     `RVALID` 為 slave 暫存器輸出、`ARADDR` 全暫存,無組合迴圈。
@@ -238,28 +237,32 @@ AR issue 時:pc_q <= next_pc + 4
   使「錯誤指令回應拍」與「flush 脈波拍」重合而由 decoder 清除,
   AXI 變動延遲下此依賴失效。
 - 做法:redirect 接受當拍,若 `ar_pending=1`(或同拍有尚未消費之 R beat),
-  置起 `discard`;下一個 R beat 由 `RREADY = if2id_ready | discard` 強制收下
-  但不對 `if2id` 呈現(`if2id_vld` 遮蔽),隨後清除 `discard`。
-  同拍一併作廢配對暫存器中 pending 的預測結果(同一清理域)。
+  置起 `discard`;下一個 R beat 照常完成握手但不寫入 skid、不出 `if2id`,
+  隨後清除 `discard`。同拍一併作廢:配對暫存器中 pending 的預測結果,
+  以及 **skid 內尚未交付的指令**(皆屬錯誤路徑,同一清理域)。
 - 結果:任何 R 延遲下,錯誤路徑指令皆於 IFU 內攔截;
   ID/EX 的 flush 只需處理「已在管線中」的指令。
 
-### 5.3 RespBuffer(無 skid buffer;v1.1 修訂)
+### 5.3 RespBuffer(1-deep skid buffer)與 skid 邊界原則(v1.2 定案)
 
-- 原因:全核決策 —— **不新增 skid buffer**。核內介面種類多、payload 寬
-  (`if2id` 約 105 bits),skid 需複製整份資料暫存器;而每個 stage 邊界
-  原生就有一組管線暫存器(consumer 端)可作為儲存體;本核的 ready 鏈天然短
-  (`wb_ready` 恆 1、`ex_ready` 為暫存器輸出),skid 打拍所省有限。
-  R channel 的資料保持由 AXI 協議免費提供(slave 必須撐住 RVALID/RDATA
-  直到 RREADY),IFU 無需自有回應暫存器。
-- 做法:R beat 組合呈現至 `if2id`(payload 由 RDATA + 配對暫存器組成),
-  ID 於 fire 當拍以自身管線暫存器捕捉;`RREADY = if2id_ready | discard`(組合)。
-  ID 停等時 beat 於 R channel 上 hold,`r_accept` 不成立 → AR 自然節流(§3.1)。
-- 結果:較 skid 版少一組寬暫存器與一個狀態,happy path 延遲相同;
-  代價為 `if2id_ready → RREADY` 組合鏈穿出 AXI 口、stall 期間 beat 佔用匯流排
-  —— 點對點指令口兩者皆無實害。**Skid 自「預設元件」降級為「定點工具」**:
-  未來特定邊界 ready 鏈成為 critical path、或 interconnect 共享使匯流排
-  佔用有代價時,於該邊界局部加入,介面不變。
+**邊界原則:skid buffer 僅用於 hart 對外的介面(bus / SRAM / Cache 端口);
+in-hart 的 stage 邊界(IF→ID、ID→EX、EX→WB)不設,僅用原生的單一管線暫存器。**
+
+- 原因(對外要設):(a) 外部目標的資料無法無成本 hold —— 同步 SRAM / cache
+  的讀出結果不捕捉即流失,cache pipeline 被 hold 佔住等於 stall 其他請求者;
+  (b) 組合 ready 穿出 hart 端口等於把內部時序雲暴露給外部,端口打拍是
+  乾淨的時序隔離面;(c) 共享 interconnect 時,beat 滯留於匯流排會佔用
+  其他 master 的通道。
+- 原因(in-hart 不設):核內介面種類多、payload 寬(`if2id` 約 105 bits),
+  skid 需複製整份資料暫存器;每個 stage 邊界原生已有一組管線暫存器
+  (consumer 端)作為儲存體;核內 ready 鏈天然短(`wb_ready` 恆 1、
+  `ex_ready` 為暫存器輸出),打拍所省有限。
+- 做法(IFU 對外 R 端口):1-deep skid,R beat 到達時若 ID 可收且 buffer 空
+  則組合直通(passthrough,零延遲),否則捕捉入 buffer 由其供給 `if2id`;
+  `RREADY = ~skid_full` 為純暫存器輸出;redirect 接受時 skid 一併清空(§5.2)。
+- 結果:AXI 端口的 ready/資料時序與 hart 內部完全解耦,吞吐不損;
+  資料由 IFU 自行持有,不依賴外部保持行為;未來換接 SRAM/Cache wrapper
+  時端口行為不變。
 
 ### 5.4 預測配對
 
@@ -291,6 +294,7 @@ AR issue 時:pc_q <= next_pc + 4
 | `ar_pending` | 1 | credit=1 記帳:AR 握手置 1、R beat 握手清 0、同拍重疊維持 1 |
 | `discard` | 1 | 見 §5.2 |
 | `pred_hold` | 1+32(+5) | 與 in-flight fetch 配對之預測結果(§5.4) |
+| skid buffer | payload 寬 | 1-deep,對外 R 端口專用(§5.3) |
 
 ---
 
@@ -316,18 +320,17 @@ AR issue 時:pc_q <= next_pc + 4
 - 同拍 `X2` 之 R beat 到達 → `discard` 丟棄、`if2id_vld=0`:`X2` 不進 ID。
 - T3 起恢復路徑正常交付;誤預測 penalty = 2 拍(1-cycle memory)。
 
-### 7.3 ID 反壓與 AXI 節流(無 skid)
+### 7.3 ID 反壓、skid 停放與 AXI 節流
 
 ![backpressure](./waveform/ifu_backpressure.svg)
 
-- T1:`I(A)` 到達但 `if2id_ready=0` → `RREADY=0`,beat 由 slave 依 AXI 規則
-  hold 於 R channel(RVALID/RDATA 保持穩定);`ar_pending=1` 且 `r_accept`
-  不成立 → `ARVALID=0`,AR 自然節流。
-- T1–T2:`I(A)` 持續 hold;`if2id_vld` 隨 RVALID 呈現,ID 未收。
-- T3:`if2id_ready=1` → `RREADY=1`,`I(A)` 完成握手、ID 同拍捕捉;
-  `r_accept` 成立 → **同拍**發出 AR `B`(§3.1 重疊規則)。
-- T4 起恢復穩態 back-to-back(`I(B)`、`I(C)`…每拍交付)。
-  反壓全程無資料遺失、無重複交付、無額外緩衝。
+- T1:`I(A)` 到達但 `if2id_ready=0` → `A` 停入 skid(`skid_vld` T2 起);
+  同拍 AR 已發 `B`。
+- T2–T3:skid 滿 → `RREADY=0`,`I(B)` 由 slave hold 於 R channel
+  (等效第二層緩衝);`ARVALID=0`(skid 滿不發新請求)。
+- T3:`if2id_ready=1` → `A` 自 skid 消費;T4 `RREADY` 回高收下 `B`
+  並 passthrough 交付。
+- T5 起恢復穩態(AR `C` 發出)。反壓全程無資料遺失、無重複交付。
 
 ---
 
@@ -340,7 +343,7 @@ AR issue 時:pc_q <= next_pc + 4
 | 3 | BPU query/resp 無 ready | 讀埠恆可用;錯誤路徑查詢必作廢(§3.3) |
 | 4 | Redirect valid-held + cause | hold 暫存器移除;trap/mret 預留同通道(§3.4) |
 | 5 | Outstanding=1 含同拍重疊 | 頻寬不損、記帳 1 bit(§3.1) |
-| 6 | 全核不設 skid buffer(v1.1) | 邊界僅一組管線暫存器;AXI 保持行為為免費儲存;skid 降級為定點工具(§5.3) |
+| 6 | Skid 邊界原則(v1.2) | 對外介面(bus/SRAM/Cache 端口)設 skid 做時序隔離;in-hart stage 邊界不設,僅原生管線暫存器(§5.3) |
 | 7 | RRESP → fault bit | 未映射取指不再 deadlock;trap 入口預留(§5.6) |
 
 ---
@@ -351,6 +354,7 @@ AR issue 時:pc_q <= next_pc + 4
 - [ ] BPU 規格 —— 討論記錄與待拍板事項見 `DOC/BPU_NOTES.md`
 - [ ] `AxiMemSlave`:MemoryModel 之 AXI wrapper(sim 用;含 RVALID hold 行為)
 - [ ] Trap 單元接入:`RedirectArb`(TRAP > MISPREDICT)、BPU 通知、`fault` 消費
+- [ ] `SkidBuffer` 通用元件(對外介面用;LSU 的 AXI 端口屆時複用)
 
 ---
 

@@ -132,13 +132,16 @@ A2 正確性論證 —— 兩次即足夠、不需等待期間連續刷新,對�
 
 通用規格語言:**無論預存與否,operand 最終值以 fire 當拍的 `ex_fwd` 比對為準**。
 
-### 4.5 已決策:全核不設 skid buffer
+### 4.5 已決策:skid 邊界原則 —— 對外設、in-hart 不設
 
-核內介面種類多、payload 寬,每個 stage 邊界原生僅一組管線暫存器(consumer 端),
-ready 鏈天然短(`wb_ready` 恆 1、`ex_ready` 為暫存器輸出);
-AXI 邊界的資料保持由協議免費提供。Skid 自預設元件降級為定點工具
-(特定邊界 ready 鏈成 critical path 或 interconnect 共享時局部加入)。
-IFU 端的落實見 `IFU_SPEC.md` v1.1 §5.3。
+- **對外介面(bus / SRAM / Cache 端口)設 skid**:外部資料無法無成本 hold
+  (同步 SRAM / cache 讀出不捕捉即流失,hold 佔住 cache pipeline 即 stall 他人);
+  端口打拍為乾淨的時序隔離面;共享 interconnect 時避免 beat 佔用通道。
+- **In-hart stage 邊界(IF→ID、ID→EX、EX→WB)不設**:介面多、payload 寬,
+  skid 需複製整份資料暫存器;邊界原生已有一組管線暫存器(consumer 端);
+  核內 ready 鏈天然短(`wb_ready` 恆 1、`ex_ready` 為暫存器輸出),允許組合穿越。
+- IFU 對外 AXI R 端口維持 1-deep skid,見 `IFU_SPEC.md` v1.2 §5.3;
+  LSU 的 AXI 端口屆時複用同一元件。
 
 ### 4.6 演進路徑備查:non-blocking load 與 scoreboard
 
@@ -231,5 +234,6 @@ CSR 位址不存在之檢查屬 CSR 單元職責,另計。
 - [ ] `illegal` 旗標與非法編碼行為定義(§5.2;與 trap 規劃連動)
 - [ ] 新 decoder 的「指令屬性 / 管線控制」分離(§5.4)
 - [ ] Operand 存放方案:A1(fire 當拍組合解析)vs A2(預存 + 兩次 patch)(§4.4)
-- [x] ID→EX 緩衝:全核不設 skid buffer,單一管線暫存器 + 組合 ready(§4.5)
+- [x] ID→EX 緩衝:skid 邊界原則 —— 對外介面設、in-hart 不設;
+      ID→EX 為 in-hart,單一管線暫存器 + 組合 ready(§4.5)
 - [x] Scoreboard / ROB:現階段不做,列為 non-blocking load 演進路徑(§4.6)
