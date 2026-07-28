@@ -25,9 +25,11 @@ exception 的發起與 CSR 狀態機(trap 單元,EX 側)。
 
 ### 1.2 設計原則(已拍板)
 
-1. **管線控制由介面解決,輸出全擋 register**:
-   ID→EX payload 為暫存器輸出;bubble = `id2ex_vld=0`(不清資料欄位)、
-   stall = 暫存器 hold、flush = 只殺 valid bit。不存在「插 NOP」的動作。
+1. **管線控制由介面解決,輸出全擋 register** —— 支援之功能:
+   - **反壓(stall)**:EX 未接受交付時,ID 保留當前指令;不遺失、不重複交付。
+   - **斷流(bubble)**:上游無有效指令時,ID 對 EX 呈現無效交付;EX 不動作。
+   - **清除(flush)**:redirect 事件發生時,ID 內尚未交付之指令即刻作廢。
+   - **輸出時序**:ID 對 EX 之所有輸出為暫存器輸出,無組合路徑跨越模組邊界。
 2. **指令屬性與管線控制分離**:decoder 屬性訊號 = `f(inst)` 純組合,
    永不摻入 gating;現行 `dec_rs_collide` 偽 stall 與 combo-loop 問題隨此淘汰。
 3. **RAW 處理只有一種機制**:`ex_fwd` 單源比較(EX 執行中的 producer 由
@@ -194,10 +196,10 @@ producer 在 WB → `ex_fwd` patch;更老 → RF。
 (現行 `nop_insert / dec_rs_collide / csr_hazard` 機制全數淘汰,
 偽 stall 問題隨之消失 —— 不於現行 code 修正。)
 
-### 5.3 Valid-bit 控制
+### 5.3 管線控制
 
-Output register:載入 = `if2id_vld & (~out_vld | id2ex_ready) & ~flush`;
-清除 = flush 或被取走且無新資料;保持 = 其餘。資料欄位僅於載入時更新。
+依 §1.2 原則 1 之功能定義(stall / bubble / flush / 全暫存器輸出)。
+無效交付期間資料欄位為 don't-care;不存在「插入 NOP」之動作。
 
 ---
 
