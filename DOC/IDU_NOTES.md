@@ -28,10 +28,13 @@
 - 距離1 時序:`IF(I_n) > ID(I_{n-1})` → 插 NOP → `IF(I_n) > ID(NOP) > EX(I_{n-1})`
   → 下一拍 `ID(I_n, operand=forward(EX 結果)) > EX(NOP)`。
   本質:**插 NOP 把距離1 人工拉開成距離2**,使 producer 結果先落進暫存器。
-- Case 2 收尾修正(重要):stall 期間 `rs1_ren` 被 `~nop_insert` gate 住
-  (`TypeDecoder.v:55-61,179-180`),捕捉點**不會**重捕捉,也不經 WB forward 收資料;
-  實際順序為 rvld 拍寫 RF → 下一拍 nop 落下、`rs1_ren` 回高 → consumer 自 RF 讀取。
-  WB forward 真正服務的是「距離3、無 stall」場景。load-use penalty 比表面多 1 拍。
+- Case 2 收尾(**以實機波形驗證定案**;先前版本記載有誤,已更正):
+  load 於其 EX 拍結尾即移入 `lsu_*` 暫存器(該拍 `lsu_ready` 仍為 1,
+  `alu_*` 同拍前進為 bubble),等待期間 `alu_mem_read=0`,
+  stall 由 `nop_insert_hold & ~lsu_mem_rvld` 獨力維持;
+  `lsu_mem_rvld` 拍該項天然失效 → `nop_insert` **當拍落下**、`rs1_ren` 回高,
+  consumer 於同拍結尾經 **WB forward** 收下 `wb_rd_data`(與 RF 寫入同拍)並前進。
+  註:記憶體側 `mem_rvld` 較 LSU 側 `lsu_mem_rvld` 早一拍(CoreBus 對 data 回應打拍)。
 
 ### 正確性結論
 
@@ -42,10 +45,10 @@
 
 | 缺的 path | 現況替代 | 補上效益 | 不補理由 |
 |---|---|---|---|
-| EX 組合 bypass(`alu_out_nxt` 當拍直入捕捉點) | NOP 拉距離 | 距離1 零 bubble | ALU→mux→暫存器組合鏈變長 |
-| Load 資料早釋放(rvld 拍 forward 併同拍解除 stall) | rvld 拍寫 RF、下拍讀 | load-use 少 1 拍 | rvld→解 stall→ren→捕捉同拍長鏈 |
+| 消費點組合 forward(教科書式 EX 輸入端 mux,來源含 `alu_out_nxt` / 當拍載入資料) | 捕捉點在暫存器 D 端,forward 來源限已打拍結果 | 距離1 零 bubble;load-use 的 consumer 可提前一拍進 EX | 組合鏈變長(運算/載入資料 → mux → EX 輸入),現行一致選「多等一拍」 |
 
-共同點:拿組合路徑長度換 bubble;現行一律選「多等一拍」,風格一致。
+(原記載的「load 資料早釋放」獨立缺口經波形驗證不存在 —— WB forward 於
+`lsu_mem_rvld` 拍即生效;僅存的差距與距離1 bubble 同根因,合併為上列單一項。)
 
 ## 3. 偽 stall(現行 RTL 效能 bug,已確認)
 
