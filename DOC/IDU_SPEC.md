@@ -41,17 +41,18 @@ exception 的發起與 CSR 狀態機(trap 單元,EX 側)。
 
 ### 2.1 完整支援(解碼 + 執行)
 
-| 類別 | 指令 | 數量 |
-|---|---|---|
-| RV32I Reg-Reg | `ADD SUB SLL SLT SLTU XOR SRL SRA OR AND` | 10 |
-| RV32I Reg-Imm | `ADDI SLTI SLTIU XORI ORI ANDI SLLI SRLI SRAI` | 9 |
-| RV32I Upper | `LUI AUIPC` | 2 |
-| RV32I Jump | `JAL JALR` | 2 |
-| RV32I Branch | `BEQ BNE BLT BGE BLTU BGEU` | 6 |
-| RV32I Load | `LB LH LW LBU LHU` | 5 |
-| RV32I Store | `SB SH SW` | 3 |
-| Zicsr | `CSRRW CSRRS CSRRC CSRRWI CSRRSI CSRRCI` | 6 |
-| SYSTEM(新增) | `ECALL EBREAK MRET` | 3 |
+| 類別 | 指令 | 格式 | 數量 |
+|---|---|---|---|
+| RV32I Reg-Reg | `ADD SUB SLL SLT SLTU XOR SRL SRA OR AND` | R | 10 |
+| RV32I Reg-Imm | `ADDI SLTI SLTIU XORI ORI ANDI` | I | 6 |
+| RV32I Shift-Imm | `SLLI SRLI SRAI` | I(shamt 特化) | 3 |
+| RV32I Upper | `LUI AUIPC` | U | 2 |
+| RV32I Jump | `JAL` / `JALR` | J / I | 2 |
+| RV32I Branch | `BEQ BNE BLT BGE BLTU BGEU` | B | 6 |
+| RV32I Load | `LB LH LW LBU LHU` | I | 5 |
+| RV32I Store | `SB SH SW` | S | 3 |
+| Zicsr | `CSRRW CSRRS CSRRC` / `CSRRWI CSRRSI CSRRCI` | I(csr/uimm 特化) | 6 |
+| SYSTEM(新增) | `ECALL EBREAK MRET` | I(funct12 特化) | 3 |
 
 - SYSTEM 三條為本版**新增解碼**(現行 core 未解碼):decoder 產生
   `ecall / ebreak / mret` 旗標隨 payload 進 EX,由 trap 單元消費;
@@ -85,6 +86,35 @@ exception 的發起與 CSR 狀態機(trap 單元,EX 側)。
 旗標隨 payload 進 EX 交 trap 單元(mcause=2、mtval=inst);
 trap 單元完成前等效 NOP retire,不產生任何副作用
 (修正現行「寫 0 進 rd」「`is_LS` 幽靈存取」兩類未定義行為)。
+
+### 2.4 編碼格式對照(摘自 `riscv-unprivileged.pdf` Ch.36 列表,文件頁 585-587)
+
+六種基本格式與各自的欄位語意(decoder 立即值產生器之依據):
+
+| 格式 | 成員 | 有效欄位 | Immediate 組成 |
+|---|---|---|---|
+| **R** | ADD SUB SLL SLT SLTU XOR SRL SRA OR AND | rs1, rs2, rd, funct3, funct7 | 無 |
+| **I** | ADDI SLTI SLTIU XORI ORI ANDI;LB LH LW LBU LHU;JALR | rs1, rd, funct3 | `{{21{inst[31]}}, inst[30:20]}`(符號延伸) |
+| **S** | SB SH SW | rs1, rs2, funct3 | `{{21{inst[31]}}, inst[30:25], inst[11:7]}` |
+| **B** | BEQ BNE BLT BGE BLTU BGEU | rs1, rs2, funct3 | `{{20{inst[31]}}, inst[7], inst[30:25], inst[11:8], 1'b0}` |
+| **U** | LUI AUIPC | rd | `{inst[31:12], 12'b0}` |
+| **J** | JAL | rd | `{{12{inst[31]}}, inst[19:12], inst[20], inst[30:21], 1'b0}` |
+
+I 格式的四個**次型**(欄位語意改變,decoder 需分別處理):
+
+| 次型 | 成員 | 特化內容 | 出處 |
+|---|---|---|---|
+| shamt | SLLI SRLI SRAI | `imm[4:0]` = shamt、`inst[30]` 判 SRA;`inst[31:25]` 須為 `0000000/0100000` | spec §2.4.1「shifts by a constant are encoded as a specialization of the I-type format」 |
+| csr | CSRRW CSRRS CSRRC | `imm[11:0]` = CSR 位址(**不做符號延伸**,為位址非資料) | Zicsr Ch.6 |
+| csr+uimm | CSRRWI CSRRSI CSRRCI | 同上,且 **rs1 欄位 = uimm[4:0]**(零延伸,非暫存器索引) | Zicsr Ch.6 |
+| funct12 | ECALL(`0x000`)EBREAK(`0x001`)MRET(`0x302`)| `imm[11:0]` 為判別碼,無資料語意;rs1=rd=00000 | ECALL/EBREAK:Ch.36 列表;**MRET 出自 privileged spec,非本 DOC** |
+
+Decoder 設計含意:
+- rs1/rs2/rd 欄位位置全格式固定(`inst[19:15]/[24:20]/[11:7]`),可無條件切割;
+  但「該欄位是否為暫存器索引」依格式而定(csr+uimm 次型的 rs1 欄位、
+  U/J 的 rs1/rs2 欄位皆非索引)—— `rs1_used/rs2_used` 屬性由此表推導。
+- Immediate 產生器共 6 種組裝(I/S/B/U/J + csr 零延伸),
+  shamt/funct12 為 I 組裝的欄位再解釋,不另設組裝。
 
 ---
 
