@@ -51,8 +51,8 @@ module InstructionDecoder #(
   , input wire [   DATA_WIDTH-1:0] id2rf_rs1_data
   , input wire [   DATA_WIDTH-1:0] id2rf_rs2_data
   // EXUs to IDU (forward)
-  , input wire                     ex2id_valid
-  ,output wire                     ex2id_ready
+  , input wire                     ex2id_fwd_valid
+  ,output wire                     ex2id_fwd_ready
   , input wire                     ex2id_fwd_we
   , input wire [RF_ADDR_WIDTH-1:0] ex2id_fwd_rd
   , input wire [   DATA_WIDTH-1:0] ex2id_fwd_data

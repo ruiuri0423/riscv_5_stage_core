@@ -38,6 +38,13 @@ module ExecutionUnits #(
   , input wire [   DATA_WIDTH-1:0] id2ex_imm      // for CSR, msb padded with 0
   , input wire [   ADDR_WIDTH-1:0] id2ex_pc
   , input wire [  FAULT_WIDTH-1:0] id2ex_fault    // decoder error / ECALL / EBREAK
+  // IFU to BPU (query / response; not yet listed in the xlsx EXU sheet,
+  // added here so the hart top can wire IFU's if2bp_* interface)
+  , input wire                     if2bp_query
+  , input wire [   ADDR_WIDTH-1:0] if2bp_pc
+  ,output wire                     if2bp_taken
+  ,output wire [   ADDR_WIDTH-1:0] if2bp_npc
+  ,output wire                     if2bp_hit
   // IDU to BPU (IFU metadata, transparent)
   , input wire                     id2bp_taken
   , input wire [   ADDR_WIDTH-1:0] id2bp_npc
