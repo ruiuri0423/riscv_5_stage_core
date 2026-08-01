@@ -1,24 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="822" height="1114" viewBox="0 0 822 1114">
-<rect x="0" y="0" width="822" height="1114" fill="#FBFBF6"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="822" height="1370" viewBox="0 0 822 1370">
+<rect x="0" y="0" width="822" height="1370" fill="#FBFBF6"/>
 <rect x="0.0" y="0.0" width="150.0" height="26.0" fill="#ECE9D8" stroke="#ACA899" stroke-width="1"/>
 <text x="75.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">SIGNAL</text>
 <text x="192.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020" font-weight="bold">T0</text>
-<polyline points="150.0,26.0 150.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="150.0,26.0 150.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
 <text x="276.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020" font-weight="bold">T1</text>
-<polyline points="234.0,26.0 234.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="234.0,26.0 234.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
 <text x="360.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020" font-weight="bold">T2</text>
-<polyline points="318.0,26.0 318.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="318.0,26.0 318.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
 <text x="444.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020" font-weight="bold">T3</text>
-<polyline points="402.0,26.0 402.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="402.0,26.0 402.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
 <text x="528.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020" font-weight="bold">T4</text>
-<polyline points="486.0,26.0 486.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="486.0,26.0 486.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
 <text x="612.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020" font-weight="bold">T5</text>
-<polyline points="570.0,26.0 570.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="570.0,26.0 570.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
 <text x="696.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020" font-weight="bold">T6</text>
-<polyline points="654.0,26.0 654.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="654.0,26.0 654.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
 <text x="780.0" y="13.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020" font-weight="bold">T7</text>
-<polyline points="738.0,26.0 738.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
-<polyline points="822.0,26.0 822.0,1114.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="738.0,26.0 738.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
+<polyline points="822.0,26.0 822.0,1370.0" fill="none" stroke="#B9B9A8" stroke-width="1" stroke-dasharray="2,3"/>
 <polyline points="150.0,26.0 822.0,26.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
 <rect x="0.0" y="26.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
 <text x="8.0" y="58.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">CLK</text>
@@ -65,11 +65,15 @@
 <polyline points="150.0,218.0 822.0,218.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
 <polyline points="150.0,166.8 234.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="234.0,166.8 318.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="318.0,166.8 402.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,166.8 486.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,166.8 334.8,205.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="334.8,205.2 402.0,205.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,205.2 418.8,166.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="418.8,166.8 486.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="486.0,166.8 570.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,166.8 654.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,166.8 738.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,166.8 586.8,205.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="586.8,205.2 654.0,205.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,205.2 670.8,166.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="670.8,166.8 738.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="738.0,166.8 822.0,166.8" fill="none" stroke="#101010" stroke-width="2"/>
 <rect x="0.0" y="218.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
 <text x="24.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">ARADDR</text>
@@ -78,49 +82,39 @@
 <polyline points="158.4,269.2 234.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="150.0,250.0 158.4,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="150.0,250.0 158.4,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="192.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A</text>
+<text x="192.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A0</text>
 <polyline points="250.8,230.8 318.0,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="250.8,269.2 318.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="234.0,230.8 242.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="234.0,269.2 242.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="242.4,250.0 250.8,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="242.4,250.0 250.8,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="276.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A+4</text>
+<text x="276.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A1</text>
 <polyline points="334.8,230.8 402.0,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="334.8,269.2 402.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="318.0,230.8 326.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="318.0,269.2 326.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="326.4,250.0 334.8,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="326.4,250.0 334.8,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="360.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A+8</text>
-<polyline points="418.8,230.8 486.0,230.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="418.8,269.2 486.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,230.8 410.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,269.2 410.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="410.4,250.0 418.8,230.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="410.4,250.0 418.8,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="444.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T</text>
+<text x="360.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A2</text>
+<polyline points="402.0,230.8 486.0,230.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,269.2 486.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="502.8,230.8 570.0,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="502.8,269.2 570.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="486.0,230.8 494.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="486.0,269.2 494.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="494.4,250.0 502.8,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="494.4,250.0 502.8,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="528.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T+4</text>
+<text x="528.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A3</text>
 <polyline points="586.8,230.8 654.0,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="586.8,269.2 654.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="570.0,230.8 578.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="570.0,269.2 578.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="578.4,250.0 586.8,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="578.4,250.0 586.8,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="612.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T+8</text>
-<polyline points="670.8,230.8 738.0,230.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="670.8,269.2 738.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,230.8 662.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,269.2 662.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="662.4,250.0 670.8,230.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="662.4,250.0 670.8,269.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="696.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T+12</text>
+<text x="612.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T</text>
+<polyline points="654.0,230.8 738.0,230.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,269.2 738.0,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="754.8,230.8 813.6,230.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="754.8,269.2 813.6,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="738.0,230.8 746.4,250.0" fill="none" stroke="#101010" stroke-width="2"/>
@@ -129,7 +123,7 @@
 <polyline points="746.4,250.0 754.8,269.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="813.6,230.8 822.0,250.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="813.6,269.2 822.0,250.0" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="780.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T+16</text>
+<text x="780.0" y="250.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T+4</text>
 <rect x="0.0" y="282.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
 <text x="24.0" y="314.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">ARREADY</text>
 <polyline points="150.0,346.0 822.0,346.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
@@ -153,253 +147,337 @@
 <polyline points="234.0,461.2 250.8,422.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="250.8,422.8 318.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="318.0,422.8 402.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,422.8 486.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,422.8 570.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,422.8 418.8,461.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="418.8,461.2 486.0,461.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,461.2 502.8,422.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="502.8,422.8 570.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="570.0,422.8 654.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,422.8 738.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,422.8 822.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,422.8 670.8,461.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="670.8,461.2 738.0,461.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,461.2 754.8,422.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="754.8,422.8 822.0,422.8" fill="none" stroke="#101010" stroke-width="2"/>
 <rect x="0.0" y="474.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
 <text x="24.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">RDATA</text>
 <polyline points="150.0,538.0 822.0,538.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
-<polygon points="150.0,506.0 158.4,486.8 234.0,486.8 234.0,525.2 158.4,525.2" fill="#E79B9B"/>
-<polyline points="158.4,518.2 165.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,511.2 172.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,504.2 179.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,497.2 186.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,490.2 193.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="162.0,486.8 200.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="169.0,486.8 207.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="176.0,486.8 214.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="183.0,486.8 221.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="190.0,486.8 228.4,525.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="197.0,486.8 234.0,523.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="204.0,486.8 234.0,516.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="211.0,486.8 234.0,509.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="218.0,486.8 234.0,502.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="225.0,486.8 234.0,495.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="232.0,486.8 234.0,488.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,486.8 234.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="158.4,525.2 234.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="150.0,506.0 158.4,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="150.0,506.0 158.4,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="250.8,486.8 318.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="250.8,525.2 318.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="234.0,486.8 242.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="234.0,525.2 242.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="242.4,506.0 250.8,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="242.4,506.0 250.8,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="276.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(A)</text>
+<polyline points="150.0,506.0 234.0,506.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="242.4,486.8 318.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="242.4,525.2 318.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,506.0 242.4,486.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,506.0 242.4,525.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="276.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(A0)</text>
 <polyline points="334.8,486.8 402.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="334.8,525.2 402.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="318.0,486.8 326.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="318.0,525.2 326.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="326.4,506.0 334.8,486.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="326.4,506.0 334.8,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="360.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(A+4)</text>
-<polyline points="418.8,486.8 486.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="418.8,525.2 486.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="360.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(A1)</text>
+<polyline points="410.4,506.0 486.0,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="402.0,486.8 410.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="402.0,525.2 410.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="410.4,506.0 418.8,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="410.4,506.0 418.8,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="444.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(A+8)</text>
-<polyline points="502.8,486.8 570.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="502.8,525.2 570.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,486.8 494.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,525.2 494.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="494.4,506.0 502.8,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="494.4,506.0 502.8,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="528.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(T)</text>
+<polyline points="494.4,486.8 570.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="494.4,525.2 570.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,506.0 494.4,486.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,506.0 494.4,525.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="528.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(A2)</text>
 <polyline points="586.8,486.8 654.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="586.8,525.2 654.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="570.0,486.8 578.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="570.0,525.2 578.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="578.4,506.0 586.8,486.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="578.4,506.0 586.8,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="612.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(T+4)</text>
-<polyline points="670.8,486.8 738.0,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="670.8,525.2 738.0,525.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="612.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(A3)</text>
+<polyline points="662.4,506.0 738.0,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="654.0,486.8 662.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="654.0,525.2 662.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="662.4,506.0 670.8,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="662.4,506.0 670.8,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="696.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(T+8)</text>
-<polyline points="754.8,486.8 813.6,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="754.8,525.2 813.6,525.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,486.8 746.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,525.2 746.4,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="746.4,506.0 754.8,486.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="746.4,506.0 754.8,525.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="746.4,486.8 813.6,486.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="746.4,525.2 813.6,525.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,506.0 746.4,486.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,506.0 746.4,525.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="813.6,486.8 822.0,506.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="813.6,525.2 822.0,506.0" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="780.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(T+12)</text>
-<rect x="0.0" y="538.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
-<text x="24.0" y="570.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">RREADY</text>
+<text x="780.0" y="506.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">I(T)</text>
+<rect x="0.0" y="538.0" width="150.0" height="64.0" fill="#ECE9D8" stroke="#ACA899" stroke-width="1"/>
+<polygon points="6.8,567.2 15.6,567.2 11.2,573.6" fill="#202020" stroke="#202020"/>
+<text x="21.6" y="570.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">BPU</text>
+<rect x="150.0" y="538.0" width="672.0" height="64.0" fill="#ECE9D8"/>
 <polyline points="150.0,602.0 822.0,602.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
-<polyline points="150.0,550.8 234.0,550.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="234.0,550.8 318.0,550.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="318.0,550.8 402.0,550.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,550.8 486.0,550.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,550.8 570.0,550.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,550.8 654.0,550.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,550.8 738.0,550.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,550.8 822.0,550.8" fill="none" stroke="#101010" stroke-width="2"/>
-<rect x="0.0" y="602.0" width="150.0" height="64.0" fill="#ECE9D8" stroke="#ACA899" stroke-width="1"/>
-<polygon points="6.8,631.2 15.6,631.2 11.2,637.6" fill="#202020" stroke="#202020"/>
-<text x="21.6" y="634.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">BPU resp</text>
-<rect x="150.0" y="602.0" width="672.0" height="64.0" fill="#ECE9D8"/>
+<rect x="0.0" y="602.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
+<text x="24.0" y="634.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2bp_query</text>
 <polyline points="150.0,666.0 822.0,666.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
+<polyline points="150.0,614.8 234.0,614.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,614.8 318.0,614.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,614.8 334.8,653.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="334.8,653.2 402.0,653.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,653.2 418.8,614.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="418.8,614.8 486.0,614.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,614.8 570.0,614.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,614.8 586.8,653.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="586.8,653.2 654.0,653.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,653.2 670.8,614.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="670.8,614.8 738.0,614.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,614.8 822.0,614.8" fill="none" stroke="#101010" stroke-width="2"/>
 <rect x="0.0" y="666.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
-<text x="24.0" y="698.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">pred_vld</text>
+<text x="24.0" y="698.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2bp_taken</text>
 <polyline points="150.0,730.0 822.0,730.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
 <polyline points="150.0,717.2 234.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="234.0,717.2 318.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="318.0,717.2 402.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,717.2 418.8,678.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="418.8,678.8 486.0,678.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,678.8 502.8,717.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="502.8,717.2 570.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,717.2 654.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,717.2 486.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,717.2 502.8,678.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="502.8,678.8 570.0,678.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,678.8 586.8,717.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="586.8,717.2 654.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="654.0,717.2 738.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="738.0,717.2 822.0,717.2" fill="none" stroke="#101010" stroke-width="2"/>
 <rect x="0.0" y="730.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
-<text x="24.0" y="762.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">pred_pc</text>
+<text x="24.0" y="762.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2bp_npc</text>
 <polyline points="150.0,794.0 822.0,794.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
 <polyline points="150.0,762.0 234.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="234.0,762.0 318.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="318.0,762.0 402.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="410.4,742.8 486.0,742.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="410.4,781.2 486.0,781.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,762.0 410.4,742.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,762.0 410.4,781.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="444.0" y="762.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T</text>
-<polyline points="494.4,762.0 570.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,742.8 494.4,762.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,781.2 494.4,762.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,762.0 654.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,762.0 486.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="494.4,742.8 570.0,742.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="494.4,781.2 570.0,781.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,762.0 494.4,742.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,762.0 494.4,781.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="528.0" y="762.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T</text>
+<polyline points="578.4,762.0 654.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,742.8 578.4,762.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,781.2 578.4,762.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="654.0,762.0 738.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="738.0,762.0 822.0,762.0" fill="none" stroke="#101010" stroke-width="2"/>
 <rect x="0.0" y="794.0" width="150.0" height="64.0" fill="#ECE9D8" stroke="#ACA899" stroke-width="1"/>
 <polygon points="6.8,823.2 15.6,823.2 11.2,829.6" fill="#202020" stroke="#202020"/>
-<text x="21.6" y="826.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">IF2ID</text>
+<text x="21.6" y="826.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">QUEUE</text>
 <rect x="150.0" y="794.0" width="672.0" height="64.0" fill="#ECE9D8"/>
 <polyline points="150.0,858.0 822.0,858.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
 <rect x="0.0" y="858.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
-<text x="24.0" y="890.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_vld</text>
+<text x="24.0" y="890.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">cmd_q_cnt</text>
 <polyline points="150.0,922.0 822.0,922.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
-<polyline points="150.0,909.2 234.0,909.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="234.0,909.2 250.8,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="158.4,870.8 234.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="158.4,909.2 234.0,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="150.0,890.0 158.4,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="150.0,890.0 158.4,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="192.0" y="890.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">0</text>
 <polyline points="250.8,870.8 318.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="318.0,870.8 402.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,870.8 486.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="250.8,909.2 318.0,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,870.8 242.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,909.2 242.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="242.4,890.0 250.8,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="242.4,890.0 250.8,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="276.0" y="890.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">1</text>
+<polyline points="334.8,870.8 402.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="334.8,909.2 402.0,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,870.8 326.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,909.2 326.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="326.4,890.0 334.8,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="326.4,890.0 334.8,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="360.0" y="890.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">2</text>
+<polyline points="418.8,870.8 486.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="418.8,909.2 486.0,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,870.8 410.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,909.2 410.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="410.4,890.0 418.8,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="410.4,890.0 418.8,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="444.0" y="890.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">1</text>
 <polyline points="486.0,870.8 570.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,870.8 654.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,870.8 738.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,870.8 822.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,909.2 570.0,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="586.8,870.8 654.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="586.8,909.2 654.0,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,870.8 578.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,909.2 578.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="578.4,890.0 586.8,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="578.4,890.0 586.8,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="612.0" y="890.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">2</text>
+<polyline points="670.8,870.8 738.0,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="670.8,909.2 738.0,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,870.8 662.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,909.2 662.4,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="662.4,890.0 670.8,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="662.4,890.0 670.8,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="696.0" y="890.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">1</text>
+<polyline points="738.0,870.8 813.6,870.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,909.2 813.6,909.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="813.6,870.8 822.0,890.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="813.6,909.2 822.0,890.0" fill="none" stroke="#101010" stroke-width="2"/>
 <rect x="0.0" y="922.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
-<text x="24.0" y="954.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_ready</text>
+<text x="24.0" y="954.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">data_q_cnt</text>
 <polyline points="150.0,986.0 822.0,986.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
-<polyline points="150.0,934.8 234.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="158.4,934.8 234.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="158.4,973.2 234.0,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="150.0,954.0 158.4,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="150.0,954.0 158.4,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="192.0" y="954.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">0</text>
 <polyline points="234.0,934.8 318.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="318.0,934.8 402.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,973.2 318.0,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="334.8,934.8 402.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="334.8,973.2 402.0,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,934.8 326.4,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,973.2 326.4,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="326.4,954.0 334.8,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="326.4,954.0 334.8,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="360.0" y="954.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">1</text>
 <polyline points="402.0,934.8 486.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,934.8 570.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,934.8 654.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,973.2 486.0,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="502.8,934.8 570.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="502.8,973.2 570.0,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,934.8 494.4,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,973.2 494.4,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="494.4,954.0 502.8,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="494.4,954.0 502.8,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="528.0" y="954.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">0</text>
+<polyline points="586.8,934.8 654.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="586.8,973.2 654.0,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,934.8 578.4,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,973.2 578.4,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="578.4,954.0 586.8,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="578.4,954.0 586.8,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="612.0" y="954.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">1</text>
 <polyline points="654.0,934.8 738.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,934.8 822.0,934.8" fill="none" stroke="#101010" stroke-width="2"/>
-<rect x="0.0" y="986.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
-<text x="24.0" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_pc</text>
+<polyline points="654.0,973.2 738.0,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="754.8,934.8 813.6,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="754.8,973.2 813.6,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,934.8 746.4,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,973.2 746.4,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="746.4,954.0 754.8,934.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="746.4,954.0 754.8,973.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="813.6,934.8 822.0,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="813.6,973.2 822.0,954.0" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="780.0" y="954.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">0</text>
+<rect x="0.0" y="986.0" width="150.0" height="64.0" fill="#ECE9D8" stroke="#ACA899" stroke-width="1"/>
+<polygon points="6.8,1015.2 15.6,1015.2 11.2,1021.6" fill="#202020" stroke="#202020"/>
+<text x="21.6" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">IF2ID</text>
+<rect x="150.0" y="986.0" width="672.0" height="64.0" fill="#ECE9D8"/>
 <polyline points="150.0,1050.0 822.0,1050.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
-<polygon points="150.0,1018.0 158.4,998.8 234.0,998.8 234.0,1037.2 158.4,1037.2" fill="#E79B9B"/>
-<polyline points="158.4,1030.2 165.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,1023.2 172.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,1016.2 179.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,1009.2 186.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,1002.2 193.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="162.0,998.8 200.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="169.0,998.8 207.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="176.0,998.8 214.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="183.0,998.8 221.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="190.0,998.8 228.4,1037.2" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="197.0,998.8 234.0,1035.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="204.0,998.8 234.0,1028.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="211.0,998.8 234.0,1021.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="218.0,998.8 234.0,1014.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="225.0,998.8 234.0,1007.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="232.0,998.8 234.0,1000.8" fill="none" stroke="#A83232" stroke-width="1"/>
-<polyline points="158.4,998.8 234.0,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="158.4,1037.2 234.0,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="150.0,1018.0 158.4,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="150.0,1018.0 158.4,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="250.8,998.8 318.0,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="250.8,1037.2 318.0,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="234.0,998.8 242.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="234.0,1037.2 242.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="242.4,1018.0 250.8,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="242.4,1018.0 250.8,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="276.0" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A</text>
-<polyline points="334.8,998.8 402.0,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="334.8,1037.2 402.0,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="318.0,998.8 326.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="318.0,1037.2 326.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="326.4,1018.0 334.8,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="326.4,1018.0 334.8,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="360.0" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A+4</text>
-<polyline points="418.8,998.8 486.0,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="418.8,1037.2 486.0,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,998.8 410.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,1037.2 410.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="410.4,1018.0 418.8,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="410.4,1018.0 418.8,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="444.0" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A+8</text>
-<polyline points="502.8,998.8 570.0,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="502.8,1037.2 570.0,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,998.8 494.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="486.0,1037.2 494.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="494.4,1018.0 502.8,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="494.4,1018.0 502.8,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="528.0" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T</text>
-<polyline points="586.8,998.8 654.0,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="586.8,1037.2 654.0,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,998.8 578.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,1037.2 578.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="578.4,1018.0 586.8,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="578.4,1018.0 586.8,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="612.0" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T+4</text>
-<polyline points="670.8,998.8 738.0,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="670.8,1037.2 738.0,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,998.8 662.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,1037.2 662.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="662.4,1018.0 670.8,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="662.4,1018.0 670.8,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="696.0" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T+8</text>
-<polyline points="754.8,998.8 813.6,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="754.8,1037.2 813.6,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,998.8 746.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,1037.2 746.4,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="746.4,1018.0 754.8,998.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="746.4,1018.0 754.8,1037.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="813.6,998.8 822.0,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="813.6,1037.2 822.0,1018.0" fill="none" stroke="#101010" stroke-width="2"/>
-<text x="780.0" y="1018.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T+12</text>
 <rect x="0.0" y="1050.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
-<text x="24.0" y="1082.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_pred_tkn</text>
+<text x="24.0" y="1082.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_valid</text>
 <polyline points="150.0,1114.0 822.0,1114.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
 <polyline points="150.0,1101.2 234.0,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="234.0,1101.2 318.0,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="318.0,1101.2 402.0,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,1101.2 418.8,1062.8" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="418.8,1062.8 486.0,1062.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,1101.2 334.8,1062.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="334.8,1062.8 402.0,1062.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,1062.8 486.0,1062.8" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="486.0,1062.8 502.8,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
 <polyline points="502.8,1101.2 570.0,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="570.0,1101.2 654.0,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="654.0,1101.2 738.0,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="738.0,1101.2 822.0,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
-<polyline points="402.0,250.0 402.0,762.0" fill="none" stroke="#6A3FB5" stroke-width="2"/>
-<polygon points="402.0,762.0 397.0,751.0 407.0,751.0" fill="#6A3FB5" stroke="#6A3FB5"/>
-<text x="402.0" y="498.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5">1T lookup</text>
-<ellipse cx="402.0" cy="250.0" rx="4.0" ry="4.0" fill="#FFFFFF" stroke="#6A3FB5" stroke-width="2"/>
-<text x="402.0" y="240.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5" font-weight="bold">a</text>
-<ellipse cx="402.0" cy="762.0" rx="4.0" ry="4.0" fill="#FFFFFF" stroke="#6A3FB5" stroke-width="2"/>
-<text x="402.0" y="752.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5" font-weight="bold">b</text>
+<polyline points="570.0,1101.2 586.8,1062.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="586.8,1062.8 654.0,1062.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,1062.8 738.0,1062.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,1062.8 754.8,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="754.8,1101.2 822.0,1101.2" fill="none" stroke="#101010" stroke-width="2"/>
+<rect x="0.0" y="1114.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
+<text x="24.0" y="1146.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_ready</text>
+<polyline points="150.0,1178.0 822.0,1178.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
+<polyline points="150.0,1126.8 234.0,1126.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,1126.8 318.0,1126.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,1126.8 402.0,1126.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,1126.8 486.0,1126.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,1126.8 570.0,1126.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,1126.8 654.0,1126.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,1126.8 738.0,1126.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,1126.8 822.0,1126.8" fill="none" stroke="#101010" stroke-width="2"/>
+<rect x="0.0" y="1178.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
+<text x="24.0" y="1210.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_pc</text>
+<polyline points="150.0,1242.0 822.0,1242.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
+<polyline points="150.0,1210.0 234.0,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,1210.0 318.0,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="326.4,1190.8 402.0,1190.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="326.4,1229.2 402.0,1229.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,1210.0 326.4,1190.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,1210.0 326.4,1229.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="360.0" y="1210.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A0</text>
+<polyline points="418.8,1190.8 486.0,1190.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="418.8,1229.2 486.0,1229.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,1190.8 410.4,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,1229.2 410.4,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="410.4,1210.0 418.8,1190.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="410.4,1210.0 418.8,1229.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="444.0" y="1210.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A1</text>
+<polyline points="494.4,1210.0 570.0,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,1190.8 494.4,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,1229.2 494.4,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="578.4,1190.8 654.0,1190.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="578.4,1229.2 654.0,1229.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,1210.0 578.4,1190.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,1210.0 578.4,1229.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="612.0" y="1210.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A2</text>
+<polyline points="670.8,1190.8 738.0,1190.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="670.8,1229.2 738.0,1229.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,1190.8 662.4,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,1229.2 662.4,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="662.4,1210.0 670.8,1190.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="662.4,1210.0 670.8,1229.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="696.0" y="1210.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A3</text>
+<polyline points="746.4,1210.0 822.0,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,1190.8 746.4,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,1229.2 746.4,1210.0" fill="none" stroke="#101010" stroke-width="2"/>
+<rect x="0.0" y="1242.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
+<text x="24.0" y="1274.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_taken</text>
+<polyline points="150.0,1306.0 822.0,1306.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
+<polyline points="150.0,1293.2 234.0,1293.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,1293.2 318.0,1293.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,1293.2 402.0,1293.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,1293.2 486.0,1293.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,1293.2 570.0,1293.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,1293.2 654.0,1293.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,1293.2 670.8,1254.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="670.8,1254.8 738.0,1254.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,1254.8 754.8,1293.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="754.8,1293.2 822.0,1293.2" fill="none" stroke="#101010" stroke-width="2"/>
+<rect x="0.0" y="1306.0" width="150.0" height="64.0" fill="#FBFBF6" stroke="#C8C8C8" stroke-width="1"/>
+<text x="24.0" y="1338.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="start" dominant-baseline="middle" fill="#202020" font-weight="bold">if2id_npc</text>
+<polyline points="150.0,1370.0 822.0,1370.0" fill="none" stroke="#C8C8C8" stroke-width="1"/>
+<polyline points="150.0,1338.0 234.0,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="234.0,1338.0 318.0,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="326.4,1318.8 402.0,1318.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="326.4,1357.2 402.0,1357.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,1338.0 326.4,1318.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="318.0,1338.0 326.4,1357.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="360.0" y="1338.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A0+4</text>
+<polyline points="418.8,1318.8 486.0,1318.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="418.8,1357.2 486.0,1357.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,1318.8 410.4,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="402.0,1357.2 410.4,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="410.4,1338.0 418.8,1318.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="410.4,1338.0 418.8,1357.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="444.0" y="1338.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A1+4</text>
+<polyline points="494.4,1338.0 570.0,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,1318.8 494.4,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="486.0,1357.2 494.4,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="578.4,1318.8 654.0,1318.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="578.4,1357.2 654.0,1357.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,1338.0 578.4,1318.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="570.0,1338.0 578.4,1357.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="612.0" y="1338.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">A2+4</text>
+<polyline points="670.8,1318.8 738.0,1318.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="670.8,1357.2 738.0,1357.2" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,1318.8 662.4,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="654.0,1357.2 662.4,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="662.4,1338.0 670.8,1318.8" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="662.4,1338.0 670.8,1357.2" fill="none" stroke="#101010" stroke-width="2"/>
+<text x="696.0" y="1338.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#202020">T</text>
+<polyline points="746.4,1338.0 822.0,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,1318.8 746.4,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="738.0,1357.2 746.4,1338.0" fill="none" stroke="#101010" stroke-width="2"/>
+<polyline points="360.0,250.0 360.0,186.0" fill="none" stroke="#6A3FB5" stroke-width="2"/>
+<polygon points="360.0,186.0 365.0,197.0 355.0,197.0" fill="#6A3FB5" stroke="#6A3FB5"/>
+<text x="360.0" y="210.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5">cmd_q full: AR throttled</text>
+<polyline points="486.0,506.0 570.0,1082.0" fill="none" stroke="#6A3FB5" stroke-width="2"/>
+<polygon points="570.0,1082.0 563.5,1071.8 573.4,1070.4" fill="#6A3FB5" stroke="#6A3FB5"/>
+<text x="528.0" y="786.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5">rok is registered: +1T</text>
+<polyline points="486.0,762.0 654.0,1338.0" fill="none" stroke="#6A3FB5" stroke-width="2"/>
+<polygon points="654.0,1338.0 646.1,1328.8 655.7,1326.0" fill="#6A3FB5" stroke="#6A3FB5"/>
+<text x="570.0" y="1042.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5">prediction rides cmd_q</text>
+<ellipse cx="360.0" cy="250.0" rx="4.0" ry="4.0" fill="#FFFFFF" stroke="#6A3FB5" stroke-width="2"/>
+<text x="360.0" y="240.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5" font-weight="bold">a</text>
+<ellipse cx="360.0" cy="186.0" rx="4.0" ry="4.0" fill="#FFFFFF" stroke="#6A3FB5" stroke-width="2"/>
+<text x="360.0" y="176.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5" font-weight="bold">b</text>
+<ellipse cx="486.0" cy="506.0" rx="4.0" ry="4.0" fill="#FFFFFF" stroke="#6A3FB5" stroke-width="2"/>
+<text x="486.0" y="496.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5" font-weight="bold">c</text>
+<ellipse cx="570.0" cy="1082.0" rx="4.0" ry="4.0" fill="#FFFFFF" stroke="#6A3FB5" stroke-width="2"/>
+<text x="570.0" y="1072.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5" font-weight="bold">d</text>
+<ellipse cx="486.0" cy="762.0" rx="4.0" ry="4.0" fill="#FFFFFF" stroke="#6A3FB5" stroke-width="2"/>
+<text x="486.0" y="752.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5" font-weight="bold">e</text>
+<ellipse cx="654.0" cy="1338.0" rx="4.0" ry="4.0" fill="#FFFFFF" stroke="#6A3FB5" stroke-width="2"/>
+<text x="654.0" y="1328.0" font-size="12" font-family="'Microsoft JhengHei','PingFang TC','Noto Sans CJK TC','Heiti TC',sans-serif" text-anchor="middle" dominant-baseline="middle" fill="#6A3FB5" font-weight="bold">f</text>
 </svg>
