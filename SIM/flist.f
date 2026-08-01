@@ -18,3 +18,12 @@
 ../RTL/Memory/MemoryModel.v
 ../RTL/CSR/CSR.v
 ../RTL/CSR/CSRTop.v
+// 4-stage hart_top
+../RTL/Four_Stage_Hart/HartTop.v
+../RTL/Four_Stage_Hart/AxiMasterWrapper.v
+../RTL/Four_Stage_Hart/ExecutionUnits.v
+../RTL/Four_Stage_Hart/InstructionDecoder.v
+../RTL/Four_Stage_Hart/InstructionFetch.v
+../RTL/Four_Stage_Hart/RegisterFile.v
+../RTL/Four_Stage_Hart/TrapUnit.v
+../RTL/Four_Stage_Hart/SyncQueue.v

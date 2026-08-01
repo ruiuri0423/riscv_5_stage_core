@@ -21,11 +21,11 @@ module InstructionFetch #(
   // IFU to IDU
   ,output wire                   if2id_valid
   , input wire                   if2id_ready
-  ,output reg  [ ADDR_WIDTH-1:0] if2id_pc
+  ,output wire [ ADDR_WIDTH-1:0] if2id_pc
   ,output wire [ INST_WIDTH-1:0] if2id_inst
-  ,output reg                    if2id_taken
-  ,output reg  [ ADDR_WIDTH-1:0] if2id_npc
-  ,output reg                    if2id_hit
+  ,output wire                   if2id_taken
+  ,output wire [ ADDR_WIDTH-1:0] if2id_npc
+  ,output wire                   if2id_hit
   ,output wire                   if2id_fault      // instruction fetch error
   // IFU to BPU (query / response)
   ,output wire                   if2bp_query
@@ -58,19 +58,40 @@ module InstructionFetch #(
 localparam SLEEP      = 1'b0;
 localparam POWER_ON   = 1'b1;
 
-reg                   state;
+// Queue payload geometry
+localparam  CMD_Q_WIDTH = ADDR_WIDTH   // PC
+                        + ADDR_WIDTH   // NPC
+                        + 1            // Taken
+                        + 1;           // Hit
+localparam DATA_Q_WIDTH = DATA_WIDTH   // Instruction
+                        + 1;           // Fault
 
-wire                  m_axi_arhsk_if;
-wire                  m_axi_rhsk_if;
-reg                   m_axi_arvalid_ostd;  // AR outstanding credit (outstanding = 1)
+reg                     state;
 
-wire                  if2id_hsk;
-reg                   if2id_stall;         // IF2ID payload held, RDATA back-pressured
+// AXI handshakes
+wire                    m_axi_arhsk_if;
+wire                    m_axi_rhsk_if;
 
-wire                  ex2if_flush_valid;
-wire                  tr2if_flush_valid;
-wire [ADDR_WIDTH-1:0] pc_p;
-reg  [ADDR_WIDTH-1:0] pc;
+// Command queue (AR-time payload: PC / NPC / Taken / Hit)
+wire                    cmd_q_rok;
+wire                    cmd_q_wok;
+wire [ CMD_Q_WIDTH-1:0] cmd_q_rdata;
+wire                    cmd_q_ren;
+wire                    cmd_q_wen;
+wire [ CMD_Q_WIDTH-1:0] cmd_q_wdata;
+
+// Data queue (R-time payload: Instruction / Fault)
+wire                    data_q_rok;
+wire                    data_q_wok;
+wire [DATA_Q_WIDTH-1:0] data_q_rdata;
+wire                    data_q_ren;
+wire                    data_q_wen;
+wire [DATA_Q_WIDTH-1:0] data_q_wdata;
+
+wire                    ex2if_flush_valid;
+wire                    tr2if_flush_valid;
+wire [  ADDR_WIDTH-1:0] pc_p;
+reg  [  ADDR_WIDTH-1:0] pc;
 
 //-----------------------------------------------------------------------------
 // Boostrap
@@ -86,61 +107,77 @@ always @(posedge clk_if or negedge rstn_if)
 //-----------------------------------------------------------------------------
 // IFU AXI
 //-----------------------------------------------------------------------------
-assign m_axi_arvalid_if = ( m_axi_arvalid_ostd && state == POWER_ON) | 
-                          (~m_axi_arvalid_ostd && m_axi_rhsk_if    );
-assign m_axi_araddr_if  = tr2if_flush_valid ? tr2if_pc : 
+assign m_axi_arvalid_if = (state == POWER_ON) & cmd_q_wok;
+assign m_axi_araddr_if  = tr2if_flush_valid ? tr2if_pc :
                           ex2if_flush_valid ? ex2if_pc : pc;
 assign m_axi_arprot_if  = 3'b101;
-assign m_axi_rready_if  = ~if2id_stall | if2id_hsk;
+assign m_axi_rready_if  = data_q_wok;
 
-assign m_axi_arhsk_if   = m_axi_arvalid_if & m_axi_arready_if;
-assign m_axi_rhsk_if    = m_axi_rvalid_if & m_axi_rready_if;
-
-always @(posedge clk_if or negedge rstn_if)
-  begin
-    if (!rstn_if) 
-      m_axi_arvalid_ostd <= 'd1;
-    else if (~m_axi_arhsk_if &  m_axi_rhsk_if)
-      m_axi_arvalid_ostd <= 'd1;
-    else if ( m_axi_arhsk_if & ~m_axi_rhsk_if)
-      m_axi_arvalid_ostd <= 'd0;
-  end
+assign m_axi_arhsk_if = m_axi_arvalid_if & m_axi_arready_if;
+assign m_axi_rhsk_if  = m_axi_rvalid_if & m_axi_rready_if;
 
 //-----------------------------------------------------------------------------
 // IFU to IDU
 //-----------------------------------------------------------------------------
-assign if2id_valid = if2id_stall | m_axi_rhsk_if;
-assign if2id_inst  <= m_axi_rdata_if;
-assign if2id_fault <= m_axi_rresp_if != 2'b00;
+assign if2id_valid = cmd_q_rok & data_q_rok;
+assign if2id_pc    =  cmd_q_rdata[(2+ADDR_WIDTH)+:ADDR_WIDTH];
+assign if2id_inst  = data_q_rdata[(1           )+:DATA_WIDTH];
+assign if2id_taken =  cmd_q_rdata[ 1                        ];
+assign if2id_npc   =  cmd_q_rdata[(2           )+:ADDR_WIDTH];
+assign if2id_hit   =  cmd_q_rdata[ 0                        ];
+assign if2id_fault = data_q_rdata[ 0                        ];
+
 assign if2id_hsk   = if2id_valid & if2id_ready;
 
-always @(posedge clk_if or negedge rstn_if)
-  begin
-    if (!rstn_if) 
-      if2id_stall <= 'd0;
-    else if (~m_axi_rhsk_if &  if2id_hsk)
-      if2id_stall <= 'd0;
-    else if ( m_axi_rhsk_if & ~if2id_hsk)
-      if2id_stall <= 'd1;
-  end
+//-----------------------------------------------------------------------------
+// 1. Command Queue
+// 2.    Data Queue
+//-----------------------------------------------------------------------------
+assign cmd_q_ren   = if2id_hsk;
+assign cmd_q_wen   = m_axi_arhsk_if;
+assign cmd_q_wdata = {m_axi_araddr_if, if2bp_npc, if2bp_taken, if2bp_hit};
+assign cmd_q_flush = tr2if_flush_valid | ex2if_flush_valid;
 
-always @(posedge clk_if or negedge rstn_if)
-  begin
-    if (!rstn_if) 
-      begin
-        if2id_pc    <= 'd0;
-        if2id_taken <= 'd0;
-        if2id_npc   <= 'd0;
-        if2id_hit   <= 'd0;
-      end
-    else if (m_axi_arhsk_if)
-      begin
-        if2id_pc    <= m_axi_araddr_if;
-        if2id_taken <= if2bp_taken;
-        if2id_npc   <= if2bp_npc;
-        if2id_hit   <= if2bp_hit;
-      end
-  end
+SyncQueue #(
+  .WIDTH        ( CMD_Q_WIDTH  ),
+  .DEPTH        ( 2            )
+) Command_Queue (
+  // output
+  .sync_q_rok   ( cmd_q_rok    ),
+  .sync_q_wok   ( cmd_q_wok    ),
+  .sync_q_rdata ( cmd_q_rdata  ),
+  // input       
+  .sync_q_ren   ( cmd_q_ren    ),
+  .sync_q_wen   ( cmd_q_wen    ),
+  .sync_q_wdata ( cmd_q_wdata  ),
+  .sync_q_flush ( cmd_q_flush  ),
+  //             
+  .CLK          ( clk_if       ),
+  .RSTN         ( rstn_if      )
+);
+
+assign data_q_ren   = if2id_hsk;
+assign data_q_wen   = m_axi_rhsk_if;
+assign data_q_wdata = {m_axi_rdata_if, (m_axi_rresp_if != 2'b00)};
+assign data_q_flush = tr2if_flush_valid | ex2if_flush_valid;
+
+SyncQueue #(
+  .WIDTH        ( DATA_Q_WIDTH ),
+  .DEPTH        ( 2            )
+) Data_Queue (
+  // output
+  .sync_q_rok   ( data_q_rok   ),
+  .sync_q_wok   ( data_q_wok   ),
+  .sync_q_rdata ( data_q_rdata ),
+  // input
+  .sync_q_ren   ( data_q_ren   ),
+  .sync_q_wen   ( data_q_wen   ),
+  .sync_q_wdata ( data_q_wdata ),
+  .sync_q_flush ( data_q_flush ),
+  //
+  .CLK          ( clk_if       ),
+  .RSTN         ( rstn_if      ) 
+);
 
 //-----------------------------------------------------------------------------
 // PC generate.
