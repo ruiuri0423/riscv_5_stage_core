@@ -17,7 +17,7 @@ module InstructionDecoder #(
 )(
   // IFU to IDU
     input wire                     if2id_valid
-  ,output reg                      if2id_ready
+  ,output wire                     if2id_ready
   , input wire [   ADDR_WIDTH-1:0] if2id_pc
   , input wire [   INST_WIDTH-1:0] if2id_inst
   , input wire                     if2id_taken
@@ -140,21 +140,14 @@ wire                     ex2id_fwd_rs2_hit;
 //-----------------------------------------------------------------------------
 // IFU to IDU
 //-----------------------------------------------------------------------------
-assign if2id_hsk = if2id_valid & if2id_ready;
-
-always @(posedge clk_id or negedge rstn_id)
-  begin
-    if (!rstn_id)
-      if2id_ready <= 1'b0;
-    else
-      if2id_ready <= id2ex_ready;
-  end
+assign if2id_ready = ~id2ex_valid | id2ex_ready;
+assign if2id_hsk   =  if2id_valid & if2id_ready;
 
 //-----------------------------------------------------------------------------
 // IDU to EXUs
 //-----------------------------------------------------------------------------
 assign id2ex_hsk        = id2ex_valid & id2ex_ready;
-assign id2ex_upd        = id2ex_valid ? id2ex_ready : if2id_hsk;
+assign id2ex_upd        = if2id_hsk;
 assign id2ex_rs1_data_p = ex2id_fwd_rs1_hit ? ex2id_fwd_data : id2rf_rs1_data;
 assign id2ex_rs2_data_p = ex2id_fwd_rs2_hit ? ex2id_fwd_data : id2rf_rs2_data;
 
