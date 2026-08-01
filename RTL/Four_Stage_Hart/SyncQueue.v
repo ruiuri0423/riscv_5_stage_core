@@ -6,24 +6,25 @@ module SyncQueue #(
   ,parameter DEPTH_LOG2 = $clog2(DEPTH)
 )(
   // output
-   output             sync_q_rok
-  ,output             sync_q_wok
-  ,output [WIDTH-1:0] sync_q_rdata
+   output wire                  sync_q_rok
+  ,output wire                  sync_q_wok
+  ,output reg  [DEPTH_LOG2  :0] sync_q_cnt
+  ,output wire [     WIDTH-1:0] sync_q_rdata
   // input
-  , input             sync_q_ren
-  , input             sync_q_wen
-  , input [WIDTH-1:0] sync_q_wdata
-  , input             sync_q_flush
+  , input wire                  sync_q_ren
+  , input wire                  sync_q_wen
+  , input wire [     WIDTH-1:0] sync_q_wdata
+  , input wire                  sync_q_flush
   //
-  , input             CLK
-  , input             RSTN
+  , input wire                 CLK
+  , input wire                 RSTN
 );
 
 // Queue Pointer
 wire                  sync_q_inc;
 wire                  sync_q_dec;
 wire [DEPTH_LOG2  :0] sync_q_cnt_n;
-reg  [DEPTH_LOG2  :0] sync_q_cnt;
+//reg  [DEPTH_LOG2  :0] sync_q_cnt;
 
 wire                  sync_q_rmax;
 wire                  sync_q_rinc;

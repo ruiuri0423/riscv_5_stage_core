@@ -75,21 +75,28 @@ wire                    m_axi_rhsk_if;
 // Command queue (AR-time payload: PC / NPC / Taken / Hit)
 wire                    cmd_q_rok;
 wire                    cmd_q_wok;
+wire [             1:0] cmd_q_cnt;
 wire [ CMD_Q_WIDTH-1:0] cmd_q_rdata;
 wire                    cmd_q_ren;
 wire                    cmd_q_wen;
 wire [ CMD_Q_WIDTH-1:0] cmd_q_wdata;
+wire                    cmd_q_flush;
 
 // Data queue (R-time payload: Instruction / Fault)
 wire                    data_q_rok;
 wire                    data_q_wok;
+wire [             1:0] data_q_cnt;
 wire [DATA_Q_WIDTH-1:0] data_q_rdata;
 wire                    data_q_ren;
 wire                    data_q_wen;
 wire [DATA_Q_WIDTH-1:0] data_q_wdata;
+wire                    data_q_flush;
+
+wire                    ongoing_cmd;
 
 wire                    ex2if_flush_valid;
 wire                    tr2if_flush_valid;
+wire                    if2bp_taken_valid;
 wire [  ADDR_WIDTH-1:0] pc_p;
 reg  [  ADDR_WIDTH-1:0] pc;
 
@@ -107,9 +114,8 @@ always @(posedge clk_if or negedge rstn_if)
 //-----------------------------------------------------------------------------
 // IFU AXI
 //-----------------------------------------------------------------------------
-assign m_axi_arvalid_if = (state == POWER_ON) & cmd_q_wok;
-assign m_axi_araddr_if  = tr2if_flush_valid ? tr2if_pc :
-                          ex2if_flush_valid ? ex2if_pc : pc;
+assign m_axi_arvalid_if = (state == POWER_ON) & cmd_q_wok & ~tr2if_flush_valid & ~ex2if_flush_valid;
+assign m_axi_araddr_if  = pc;
 assign m_axi_arprot_if  = 3'b101;
 assign m_axi_rready_if  = data_q_wok;
 
@@ -133,6 +139,8 @@ assign if2id_hsk   = if2id_valid & if2id_ready;
 // 1. Command Queue
 // 2.    Data Queue
 //-----------------------------------------------------------------------------
+assign ongoing_cmd = cmd_q_cnt > data_q_cnt;
+
 assign cmd_q_ren   = if2id_hsk;
 assign cmd_q_wen   = m_axi_arhsk_if;
 assign cmd_q_wdata = {m_axi_araddr_if, if2bp_npc, if2bp_taken, if2bp_hit};
@@ -141,10 +149,11 @@ assign cmd_q_flush = tr2if_flush_valid | ex2if_flush_valid;
 SyncQueue #(
   .WIDTH        ( CMD_Q_WIDTH  ),
   .DEPTH        ( 2            )
-) Command_Queue (
+) u_cmd_q (
   // output
   .sync_q_rok   ( cmd_q_rok    ),
   .sync_q_wok   ( cmd_q_wok    ),
+  .sync_q_cnt   ( cmd_q_cnt    ),
   .sync_q_rdata ( cmd_q_rdata  ),
   // input       
   .sync_q_ren   ( cmd_q_ren    ),
@@ -164,10 +173,11 @@ assign data_q_flush = tr2if_flush_valid | ex2if_flush_valid;
 SyncQueue #(
   .WIDTH        ( DATA_Q_WIDTH ),
   .DEPTH        ( 2            )
-) Data_Queue (
+) u_data_q (
   // output
   .sync_q_rok   ( data_q_rok   ),
   .sync_q_wok   ( data_q_wok   ),
+  .sync_q_cnt   ( data_q_cnt   ),
   .sync_q_rdata ( data_q_rdata ),
   // input
   .sync_q_ren   ( data_q_ren   ),
@@ -182,16 +192,23 @@ SyncQueue #(
 //-----------------------------------------------------------------------------
 // PC generate.
 //-----------------------------------------------------------------------------
+assign ex2if_ready       = !ongoing_cmd;
 assign ex2if_flush_valid = ex2if_valid & ex2if_ready & ex2if_flush;
+assign tr2if_ready       = !ongoing_cmd;
 assign tr2if_flush_valid = tr2if_valid & tr2if_ready & tr2if_flush;
+assign if2bp_query       = m_axi_arhsk_if;
+assign if2bp_pc          = m_axi_araddr_if;
+assign if2bp_taken_valid = if2bp_hit & if2bp_taken;
 
-assign pc_p = (if2bp_hit & if2bp_taken) ? if2bp_npc : m_axi_araddr_if + 'd4;
+assign pc_p = tr2if_flush_valid ? tr2if_pc  :
+              ex2if_flush_valid ? ex2if_pc  : 
+              if2bp_taken_valid ? if2bp_npc : m_axi_araddr_if + 'd4;
 
-always @(posedge clk_if or negedge rstn_if)
+always @(posedge clk_if)
   begin
-    if (!rstn_if) 
-      pc <= 'd0;
-    else if (m_axi_arhsk_if)
+    if (state == SLEEP)
+      pc <= r_BOOT_ADDR;
+    else if (m_axi_arhsk_if | tr2if_flush_valid | ex2if_flush_valid)
       pc <= pc_p;
   end
 
