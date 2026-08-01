@@ -7,6 +7,7 @@ module InstructionFetch #(
   ,parameter  INST_WIDTH = 32
   ,parameter  PROT_WIDTH = 3
   ,parameter  RESP_WIDTH = 2
+  ,parameter GHIST_WIDTH = 4
   ,parameter CAUSE_WIDTH = 2
 )(
   // AXI-Lite (read-only master, outstanding = 1)
@@ -26,12 +27,14 @@ module InstructionFetch #(
   ,output wire                   if2id_taken
   ,output wire [ ADDR_WIDTH-1:0] if2id_npc
   ,output wire                   if2id_hit
+  ,output wire [GHIST_WIDTH-1:0] if2id_ghist
   ,output wire                   if2id_fault      // instruction fetch error
   // IFU to BPU (query / response)
   ,output wire                   if2bp_query
   ,output wire [ ADDR_WIDTH-1:0] if2bp_pc
   , input wire                   if2bp_taken
   , input wire [ ADDR_WIDTH-1:0] if2bp_npc
+  , input wire [GHIST_WIDTH-1:0] if2bp_ghist
   , input wire                   if2bp_hit
   // EXUs to IFU (redirection, flush 2nd priority)
   , input wire                   ex2if_valid
@@ -61,6 +64,7 @@ localparam POWER_ON   = 1'b1;
 // Queue payload geometry
 localparam  CMD_Q_WIDTH = ADDR_WIDTH   // PC
                         + ADDR_WIDTH   // NPC
+                        + GHIST_WIDTH  // GHIST
                         + 1            // Taken
                         + 1;           // Hit
 localparam DATA_Q_WIDTH = DATA_WIDTH   // Instruction
@@ -126,12 +130,13 @@ assign m_axi_rhsk_if  = m_axi_rvalid_if & m_axi_rready_if;
 // IFU to IDU
 //-----------------------------------------------------------------------------
 assign if2id_valid = cmd_q_rok & data_q_rok;
-assign if2id_pc    =  cmd_q_rdata[(2+ADDR_WIDTH)+:ADDR_WIDTH];
-assign if2id_inst  = data_q_rdata[(1           )+:DATA_WIDTH];
-assign if2id_taken =  cmd_q_rdata[ 1                        ];
-assign if2id_npc   =  cmd_q_rdata[(2           )+:ADDR_WIDTH];
-assign if2id_hit   =  cmd_q_rdata[ 0                        ];
-assign if2id_fault = data_q_rdata[ 0                        ];
+assign if2id_pc    =  cmd_q_rdata[(2+ ADDR_WIDTH)+: ADDR_WIDTH];
+assign if2id_inst  = data_q_rdata[(1            )+: DATA_WIDTH];
+assign if2id_taken =  cmd_q_rdata[ 1                          ];
+assign if2id_npc   =  cmd_q_rdata[(2+GHIST_WIDTH)+: ADDR_WIDTH];
+assign if2id_hit   =  cmd_q_rdata[ 0                          ];
+assign if2id_ghist =  cmd_q_rdata[(2            )+:GHIST_WIDTH];
+assign if2id_fault = data_q_rdata[ 0                          ];
 
 assign if2id_hsk   = if2id_valid & if2id_ready;
 
@@ -143,7 +148,7 @@ assign ongoing_cmd = cmd_q_cnt > data_q_cnt;
 
 assign cmd_q_ren   = if2id_hsk;
 assign cmd_q_wen   = m_axi_arhsk_if;
-assign cmd_q_wdata = {m_axi_araddr_if, if2bp_npc, if2bp_taken, if2bp_hit};
+assign cmd_q_wdata = {m_axi_araddr_if, if2bp_npc, if2bp_ghist, if2bp_taken, if2bp_hit};
 assign cmd_q_flush = tr2if_flush_valid | ex2if_flush_valid;
 
 SyncQueue #(

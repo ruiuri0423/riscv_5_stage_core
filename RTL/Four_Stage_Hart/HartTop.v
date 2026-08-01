@@ -102,6 +102,7 @@ wire [   INST_WIDTH-1:0] if2id_inst;
 wire                     if2id_taken;
 wire [   ADDR_WIDTH-1:0] if2id_npc;
 wire                     if2id_hit;
+wire [  GHIST_WIDTH-1:0] if2id_ghist;
 wire                     if2id_fault;
 
 // IFU to BPU (query / response)
@@ -109,6 +110,7 @@ wire                     if2bp_query;
 wire [   ADDR_WIDTH-1:0] if2bp_pc;
 wire                     if2bp_taken;
 wire [   ADDR_WIDTH-1:0] if2bp_npc;
+wire [  GHIST_WIDTH-1:0] if2bp_ghist;
 wire                     if2bp_hit;
 
 // IDU to EXUs
@@ -212,6 +214,7 @@ InstructionFetch #(
   ,.if2id_inst       ( if2id_inst       )
   ,.if2id_taken      ( if2id_taken      )
   ,.if2id_npc        ( if2id_npc        )
+  ,.if2id_ghist      ( if2id_ghist      )
   ,.if2id_hit        ( if2id_hit        )
   ,.if2id_fault      ( if2id_fault      )
   ,.if2bp_query      ( if2bp_query      )
@@ -219,6 +222,7 @@ InstructionFetch #(
   ,.if2bp_taken      ( if2bp_taken      )
   ,.if2bp_npc        ( if2bp_npc        )
   ,.if2bp_hit        ( if2bp_hit        )
+  ,.if2bp_ghist      ( if2bp_ghist      )
   ,.ex2if_valid      ( ex2if_valid      )
   ,.ex2if_ready      ( ex2if_ready      )
   ,.ex2if_flush      ( ex2if_flush      )
@@ -251,6 +255,7 @@ InstructionDecoder #(
   ,.if2id_inst      ( if2id_inst      )
   ,.if2id_taken     ( if2id_taken     )
   ,.if2id_npc       ( if2id_npc       )
+  ,.if2id_ghist     ( if2id_ghist     )
   ,.if2id_hit       ( if2id_hit       )
   ,.if2id_fault     ( if2id_fault     )
   ,.id2ex_valid     ( id2ex_valid     )
@@ -320,6 +325,7 @@ ExecutionUnits #(
   ,.if2bp_pc           ( if2bp_pc           )
   ,.if2bp_taken        ( if2bp_taken        )
   ,.if2bp_npc          ( if2bp_npc          )
+  ,.if2bp_ghist        ( if2bp_ghist        )
   ,.if2bp_hit          ( if2bp_hit          )
   ,.id2bp_taken        ( id2bp_taken        )
   ,.id2bp_npc          ( id2bp_npc          )

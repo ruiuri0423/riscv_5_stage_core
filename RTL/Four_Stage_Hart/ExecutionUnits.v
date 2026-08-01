@@ -44,6 +44,7 @@ module ExecutionUnits #(
   , input wire [   ADDR_WIDTH-1:0] if2bp_pc
   ,output wire                     if2bp_taken
   ,output wire [   ADDR_WIDTH-1:0] if2bp_npc
+  ,output wire [  GHIST_WIDTH-1:0] if2bp_ghist
   ,output wire                     if2bp_hit
   // IDU to BPU (IFU metadata, transparent)
   , input wire                     id2bp_taken
