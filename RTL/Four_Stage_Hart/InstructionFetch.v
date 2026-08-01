@@ -22,11 +22,11 @@ module InstructionFetch #(
   ,output wire                   if2id_valid
   , input wire                   if2id_ready
   ,output reg  [ ADDR_WIDTH-1:0] if2id_pc
-  ,output reg  [ INST_WIDTH-1:0] if2id_inst
+  ,output wire [ INST_WIDTH-1:0] if2id_inst
   ,output reg                    if2id_taken
   ,output reg  [ ADDR_WIDTH-1:0] if2id_npc
   ,output reg                    if2id_hit
-  ,output reg                    if2id_fault      // instruction fetch error
+  ,output wire                   if2id_fault      // instruction fetch error
   // IFU to BPU (query / response)
   ,output wire                   if2bp_query
   ,output wire [ ADDR_WIDTH-1:0] if2bp_pc
@@ -91,7 +91,7 @@ assign m_axi_arvalid_if = ( m_axi_arvalid_ostd && state == POWER_ON) |
 assign m_axi_araddr_if  = tr2if_flush_valid ? tr2if_pc : 
                           ex2if_flush_valid ? ex2if_pc : pc;
 assign m_axi_arprot_if  = 3'b101;
-assign m_axi_rready_if  = ~if2id_stall;
+assign m_axi_rready_if  = ~if2id_stall | if2id_hsk;
 
 assign m_axi_arhsk_if   = m_axi_arvalid_if & m_axi_arready_if;
 assign m_axi_rhsk_if    = m_axi_rvalid_if & m_axi_rready_if;
@@ -100,26 +100,28 @@ always @(posedge clk_if or negedge rstn_if)
   begin
     if (!rstn_if) 
       m_axi_arvalid_ostd <= 'd1;
-    else if (m_axi_rhsk_if)
+    else if (~m_axi_arhsk_if &  m_axi_rhsk_if)
       m_axi_arvalid_ostd <= 'd1;
-    else if (m_axi_arhsk_if)
-      m_axi_arvalid_ostd <= m_axi_rhsk_if;
+    else if ( m_axi_arhsk_if & ~m_axi_rhsk_if)
+      m_axi_arvalid_ostd <= 'd0;
   end
 
 //-----------------------------------------------------------------------------
 // IFU to IDU
 //-----------------------------------------------------------------------------
 assign if2id_valid = if2id_stall | m_axi_rhsk_if;
+assign if2id_inst  <= m_axi_rdata_if;
+assign if2id_fault <= m_axi_rresp_if != 2'b00;
 assign if2id_hsk   = if2id_valid & if2id_ready;
 
 always @(posedge clk_if or negedge rstn_if)
   begin
     if (!rstn_if) 
       if2id_stall <= 'd0;
-    else if (if2id_hsk)
+    else if (~m_axi_rhsk_if &  if2id_hsk)
       if2id_stall <= 'd0;
-    else if (m_axi_rhsk_if)
-      if2id_stall <= ~if2id_hsk;
+    else if ( m_axi_rhsk_if & ~if2id_hsk)
+      if2id_stall <= 'd1;
   end
 
 always @(posedge clk_if or negedge rstn_if)
@@ -140,29 +142,13 @@ always @(posedge clk_if or negedge rstn_if)
       end
   end
 
-always @(posedge clk_if or negedge rstn_if) 
-  begin
-    if (!rstn_if)
-      if2id_inst <= 'd0;
-    else if (m_axi_rhsk_if)
-      if2id_inst <= m_axi_rdata_if;
-  end
-
-always @(posedge clk_if or negedge rstn_if)
-  begin
-    if (!rstn_if)
-      if2id_fault <= 'd0;
-    else if (m_axi_rhsk_if)
-      if2id_fault <= m_axi_rresp_if != 2'b00;
-  end
-
 //-----------------------------------------------------------------------------
 // PC generate.
 //-----------------------------------------------------------------------------
 assign ex2if_flush_valid = ex2if_valid & ex2if_ready & ex2if_flush;
 assign tr2if_flush_valid = tr2if_valid & tr2if_ready & tr2if_flush;
 
-assign pc_p = (if2bp_hit & if2bp_taken) ? if2bp_npc : pc + 'd4;
+assign pc_p = (if2bp_hit & if2bp_taken) ? if2bp_npc : m_axi_araddr_if + 'd4;
 
 always @(posedge clk_if or negedge rstn_if)
   begin
