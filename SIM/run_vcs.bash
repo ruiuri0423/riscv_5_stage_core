@@ -21,4 +21,4 @@ cd $CURREN_DIR
 
 cp $PATTERN_DIR/$PATTERN.hex test.hex
 rm -rf ./simv.daidir
-vcs -f ./flist.f
+vcs -sverilog -full64 -R -debug_access+all -f ./flist.f
