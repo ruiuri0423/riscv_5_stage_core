@@ -59,6 +59,10 @@
 //`define EEI
 `define FUNCT_ECALL  12'b000000000000
 `define FUNCT_EBREAK 12'b000000000001
+//`define Trap-Return
+`define FUNCT_MRET   12'b001100000010
+//`define Interrupt-Management
+`define FUNCT_WFI    12'b000100000101
 
 `define I_TYPE_IMM   {{21{if2id_inst[31]}}, if2id_inst[30:20]} 
 `define S_TYPE_IMM   {{21{if2id_inst[31]}}, if2id_inst[30:25], if2id_inst[11:8], if2id_inst[7]}

@@ -78,7 +78,7 @@ wire [RF_ADDR_WIDTH-1:0] rs2_addr;
 wire [ FUNCT7_WIDTH-1:0] funct7;
 wire [   DATA_WIDTH-1:0] imm;
 
-// One-hot instruction decode (46 instructions, RV32I + Zicsr)
+// One-hot instruction decode (48 instructions, RV32I + Zicsr + MRET/WFI)
 wire                     is_addi;    //  1
 wire                     is_slti;    //  2
 wire                     is_sltiu;   //  3
@@ -119,12 +119,14 @@ wire                     is_store_sw;// 37 SW
 wire                     is_fence;   // 38
 wire                     is_ecall;   // 39
 wire                     is_ebreak;  // 40
-wire                     is_csrrw;   // 41
-wire                     is_csrrs;   // 42
-wire                     is_csrrc;   // 43
-wire                     is_csrrwi;  // 44
-wire                     is_csrrsi;  // 45
-wire                     is_csrrci;  // 46
+wire                     is_mret;    // 41
+wire                     is_wfi;     // 42
+wire                     is_csrrw;   // 43
+wire                     is_csrrs;   // 44
+wire                     is_csrrc;   // 45
+wire                     is_csrrwi;  // 46
+wire                     is_csrrsi;  // 47
+wire                     is_csrrci;  // 48
 
 wire                     r_type;
 wire                     i_type;
@@ -153,6 +155,11 @@ wire                     ex2id_fwd_rs1_hit_q;
 wire                     ex2id_fwd_rs2_hit_q;
 
 reg                      id2csr_imm;
+
+wire                     ecall_fault;
+wire                     ebreak_fault;
+wire                     mret_fault;
+wire                     wfi_fault;
 
 //-----------------------------------------------------------------------------
 // IFU to IDU
@@ -211,7 +218,7 @@ always @(posedge clk_id or negedge rstn_id)
     else if (id2ex_upd)
       begin
         id2ex_op         <= 'd0;
-        id2ex_rd_we      <=(i_type | r_type | u_type | j_type) & (rd_addr != 5'd0);
+        id2ex_rd_we      <=(i_type | r_type | u_type | j_type) & (~is_fence | rd_addr != 5'd0);
         id2ex_rd_addr    <= rd_addr;
         id2ex_rs1_data_q <= id2ex_rs1_data_p;
         id2ex_rs2_data_q <= id2ex_rs2_data_p;
@@ -258,6 +265,10 @@ assign ex2id_fwd_rs2_hit_q = ex2id_fwd_valid & ex2id_fwd_ready & ex2id_fwd_we & 
 //-----------------------------------------------------------------------------
 // Decoder Error / ECALL / EBREAK detection
 //-----------------------------------------------------------------------------
+assign ecall_fault  = is_ecall  & ((rs1_addr != 5'd0) | (rd_addr != 5'd0));
+assign ebreak_fault = is_ebreak & ((rs1_addr != 5'd0) | (rd_addr != 5'd0));
+assign mret_fault   = is_mret   & ((rs1_addr != 5'd0) | (rd_addr != 5'd0));
+assign wfi_fault    = is_wfi    & ((rs1_addr != 5'd0) | (rd_addr != 5'd0));
 
 //-----------------------------------------------------------------------------
 // IDU to BPU
@@ -290,8 +301,7 @@ always @(posedge clk_id or negedge rstn_id)
 //-----------------------------------------------------------------------------
 // IDU to CSR
 //-----------------------------------------------------------------------------
-assign id2csr_data = id2csr_we ? id2csr_imm ? {27'd0, rs1_addr_q} : 
-                     ex2id_fwd_rs1_hit_q ? ex2id_fwd_data : 32'd0 : 32'd0;
+assign id2csr_data = id2csr_we ? id2csr_imm ? {27'd0, rs1_addr_q} : id2ex_rs1_data : 32'd0;
 
 always @(posedge clk_id or negedge rstn_id)
   begin
@@ -385,8 +395,10 @@ assign is_store_sw = (opcode == `INST_STORE) & (funct3 == `FUNCT_SW );
 // MISC-MEM
 assign is_fence = (opcode == `INST_MISC_MEM) & (funct3 == 3'b000);
 // SYSTEM
-assign is_ecall  = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_ECALL );
-assign is_ebreak = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_EBREAK);
+assign is_ecall  = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_ECALL ) & ~ecall_fault ;
+assign is_ebreak = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_EBREAK) & ~ebreak_fault;
+assign is_mret   = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_MRET  ) & ~mret_fault  ;
+assign is_wfi    = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_WFI   ) & ~wfi_fault   ;
 assign is_csrrw  = (opcode == `INST_SYSTEM) & (funct3 == `FUNCT_CSRRW );
 assign is_csrrs  = (opcode == `INST_SYSTEM) & (funct3 == `FUNCT_CSRRS );
 assign is_csrrc  = (opcode == `INST_SYSTEM) & (funct3 == `FUNCT_CSRRC );
@@ -401,7 +413,7 @@ assign i_type   = is_addi    | is_slti    | is_sltiu   | is_andi  | is_ori
                 | is_xori    | is_slli    | is_srli    | is_srai  | is_jalr
                 | is_load_sb | is_load_sh | is_load_sw
                 | is_load_ub | is_load_uh
-                | is_fence   | is_ecall   | is_ebreak
+                | is_fence   | is_ecall   | is_ebreak  | is_mret   | is_wfi
                 | is_csrrw   | is_csrrs   | is_csrrc
                 | is_csrrwi  | is_csrrsi  | is_csrrci;
 assign s_type   = is_store_sb | is_store_sh | is_store_sw;
