@@ -76,6 +76,9 @@ reg                     state;
 wire                    m_axi_arhsk_if;
 wire                    m_axi_rhsk_if;
 
+// IFU to IDU handshakes
+wire                    if2id_hsk;
+
 // Command queue (AR-time payload: PC / NPC / Taken / Hit)
 wire                    cmd_q_rok;
 wire                    cmd_q_wok;
@@ -130,13 +133,13 @@ assign m_axi_rhsk_if  = m_axi_rvalid_if & m_axi_rready_if;
 // IFU to IDU
 //-----------------------------------------------------------------------------
 assign if2id_valid = cmd_q_rok & data_q_rok;
-assign if2id_pc    =  cmd_q_rdata[(2+ ADDR_WIDTH)+: ADDR_WIDTH];
-assign if2id_inst  = data_q_rdata[(1            )+: DATA_WIDTH];
-assign if2id_taken =  cmd_q_rdata[ 1                          ];
-assign if2id_npc   =  cmd_q_rdata[(2+GHIST_WIDTH)+: ADDR_WIDTH];
-assign if2id_hit   =  cmd_q_rdata[ 0                          ];
-assign if2id_ghist =  cmd_q_rdata[(2            )+:GHIST_WIDTH];
-assign if2id_fault = data_q_rdata[ 0                          ];
+assign if2id_pc    =  cmd_q_rdata[(2+GHIST_WIDTH+ADDR_WIDTH)+: ADDR_WIDTH];
+assign if2id_inst  = data_q_rdata[(1                       )+: DATA_WIDTH];
+assign if2id_taken =  cmd_q_rdata[ 1                                     ];
+assign if2id_npc   =  cmd_q_rdata[(2+GHIST_WIDTH           )+: ADDR_WIDTH];
+assign if2id_hit   =  cmd_q_rdata[ 0                                     ];
+assign if2id_ghist =  cmd_q_rdata[(2                       )+:GHIST_WIDTH];
+assign if2id_fault = data_q_rdata[ 0                                     ];
 
 assign if2id_hsk   = if2id_valid & if2id_ready;
 

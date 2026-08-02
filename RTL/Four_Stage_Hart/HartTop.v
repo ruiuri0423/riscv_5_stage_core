@@ -198,6 +198,7 @@ InstructionFetch #(
   ,.INST_WIDTH  ( INST_WIDTH  )
   ,.PROT_WIDTH  ( PROT_WIDTH  )
   ,.RESP_WIDTH  ( RESP_WIDTH  )
+  ,.GHIST_WIDTH ( GHIST_WIDTH )
   ,.CAUSE_WIDTH ( CAUSE_WIDTH )
 ) u_ifu (
    .m_axi_arvalid_if ( m_axi_arvalid_if )

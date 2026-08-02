@@ -44,7 +44,7 @@ module InstructionDecoder #(
   // IDU to CSR
   ,output reg                      id2csr_re
   ,output reg                      id2csr_we
-  ,output reg  [   DATA_WIDTH-1:0] id2csr_data
+  ,output wire [   DATA_WIDTH-1:0] id2csr_data
   // IDU to LSU
   ,output reg                      id2lsu_we
   // IDU to RF (combinational read)
@@ -152,6 +152,8 @@ wire                     ex2id_fwd_rs2_hit_p;
 wire                     ex2id_fwd_rs1_hit_q;
 wire                     ex2id_fwd_rs2_hit_q;
 
+reg                      id2csr_imm;
+
 //-----------------------------------------------------------------------------
 // IFU to IDU
 //-----------------------------------------------------------------------------
@@ -249,7 +251,7 @@ assign id2rf_rs2_addr = rs2_addr;
 //-----------------------------------------------------------------------------
 assign ex2id_fwd_ready     = id2ex_upd | id2ex_hsk; 
 assign ex2id_fwd_rs1_hit_p = ex2id_fwd_valid & ex2id_fwd_ready & ex2id_fwd_we & (ex2id_fwd_rd == rs1_addr  );
-assign ex2id_fwd_rs2_hit_p = ex2id_fwd_valid & ex2id_fwd_ready & ex2id_fwd_we & (ex2id_fwd_rd == rs1_addr  );
+assign ex2id_fwd_rs2_hit_p = ex2id_fwd_valid & ex2id_fwd_ready & ex2id_fwd_we & (ex2id_fwd_rd == rs2_addr  );
 assign ex2id_fwd_rs1_hit_q = ex2id_fwd_valid & ex2id_fwd_ready & ex2id_fwd_we & (ex2id_fwd_rd == rs1_addr_q);
 assign ex2id_fwd_rs2_hit_q = ex2id_fwd_valid & ex2id_fwd_ready & ex2id_fwd_we & (ex2id_fwd_rd == rs2_addr_q);
 
@@ -288,26 +290,28 @@ always @(posedge clk_id or negedge rstn_id)
 //-----------------------------------------------------------------------------
 // IDU to CSR
 //-----------------------------------------------------------------------------
+assign id2csr_data = id2csr_we ? id2csr_imm ? {27'd0, rs1_addr_q} : 
+                     ex2id_fwd_rs1_hit_q ? ex2id_fwd_data : 32'd0 : 32'd0;
+
 always @(posedge clk_id or negedge rstn_id)
   begin
     if (!rstn_id)
       begin
         id2csr_re   <= 'd0;
         id2csr_we   <= 'd0;
-        id2csr_data <= 'd0;
+        id2csr_imm  <= 'd0;
       end
     else if (flush)
       begin
         id2csr_re   <= 'd0;
         id2csr_we   <= 'd0;
-        id2csr_data <= 'd0;
+        id2csr_imm  <= 'd0;
       end
     else if (id2ex_upd)
       begin
-        id2csr_re   <= ~((is_csrrw | is_csrrwi) & (rd_addr == 4'd0));
-        id2csr_we   <= ~((is_csrrs | is_csrrc | is_csrrsi | is_csrrci) & (rd_addr == 4'd0));
-        id2csr_data <=  ( is_csrrw  | is_csrrs  | is_csrrc ) ? id2ex_rs1_data_p  :
-                        ( is_csrrwi | is_csrrsi | is_csrrci) ? {27'd0, imm[4:0]} : 32'd0;
+        id2csr_re   <=((is_csrrw | is_csrrwi) & (rd_addr != 5'd0)) | (is_csrrs | is_csrrsi | is_csrrc | is_csrrci); 
+        id2csr_we   <= (is_csrrw | is_csrrwi) | ((is_csrrs | is_csrrsi | is_csrrc | is_csrrci) & (rs1_addr != 5'd0));
+        id2csr_imm  <= (is_csrrwi | is_csrrsi | is_csrrci);
       end              
   end                  
                        
