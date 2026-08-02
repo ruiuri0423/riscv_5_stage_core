@@ -156,10 +156,7 @@ wire                     ex2id_fwd_rs2_hit_q;
 
 reg                      id2csr_imm;
 
-wire                     ecall_fault;
-wire                     ebreak_fault;
-wire                     mret_fault;
-wire                     wfi_fault;
+wire                     sys_zero;
 
 //-----------------------------------------------------------------------------
 // IFU to IDU
@@ -218,7 +215,7 @@ always @(posedge clk_id or negedge rstn_id)
     else if (id2ex_upd)
       begin
         id2ex_op         <= 'd0;
-        id2ex_rd_we      <=(i_type | r_type | u_type | j_type) & (~is_fence | rd_addr != 5'd0);
+        id2ex_rd_we      <=((i_type & ~is_fence) | r_type | u_type | j_type) & (rd_addr != 5'd0);
         id2ex_rd_addr    <= rd_addr;
         id2ex_rs1_data_q <= id2ex_rs1_data_p;
         id2ex_rs2_data_q <= id2ex_rs2_data_p;
@@ -265,10 +262,6 @@ assign ex2id_fwd_rs2_hit_q = ex2id_fwd_valid & ex2id_fwd_ready & ex2id_fwd_we & 
 //-----------------------------------------------------------------------------
 // Decoder Error / ECALL / EBREAK detection
 //-----------------------------------------------------------------------------
-assign ecall_fault  = is_ecall  & ((rs1_addr != 5'd0) | (rd_addr != 5'd0));
-assign ebreak_fault = is_ebreak & ((rs1_addr != 5'd0) | (rd_addr != 5'd0));
-assign mret_fault   = is_mret   & ((rs1_addr != 5'd0) | (rd_addr != 5'd0));
-assign wfi_fault    = is_wfi    & ((rs1_addr != 5'd0) | (rd_addr != 5'd0));
 
 //-----------------------------------------------------------------------------
 // IDU to BPU
@@ -395,10 +388,11 @@ assign is_store_sw = (opcode == `INST_STORE) & (funct3 == `FUNCT_SW );
 // MISC-MEM
 assign is_fence = (opcode == `INST_MISC_MEM) & (funct3 == 3'b000);
 // SYSTEM
-assign is_ecall  = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_ECALL ) & ~ecall_fault ;
-assign is_ebreak = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_EBREAK) & ~ebreak_fault;
-assign is_mret   = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_MRET  ) & ~mret_fault  ;
-assign is_wfi    = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_WFI   ) & ~wfi_fault   ;
+assign sys_zero  = (rs1_addr == 5'd0) & (rd_addr == 5'd0);
+assign is_ecall  = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_ECALL ) & sys_zero;
+assign is_ebreak = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_EBREAK) & sys_zero;
+assign is_mret   = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_MRET  ) & sys_zero;
+assign is_wfi    = (opcode == `INST_SYSTEM) & (funct3 == 3'b000) & (if2id_inst[31:20] == `FUNCT_WFI   ) & sys_zero;
 assign is_csrrw  = (opcode == `INST_SYSTEM) & (funct3 == `FUNCT_CSRRW );
 assign is_csrrs  = (opcode == `INST_SYSTEM) & (funct3 == `FUNCT_CSRRS );
 assign is_csrrc  = (opcode == `INST_SYSTEM) & (funct3 == `FUNCT_CSRRC );
